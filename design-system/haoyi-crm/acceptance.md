@@ -403,3 +403,19 @@ IAB 用于实际视觉复核；项目已有 Playwright 与本机 Edge 用于多�
 浏览器使用 Playwright 与已安装 Chrome（Browser plugin not available）；验证地址 `http://127.0.0.1:4176/crm/franchises`，为正式构建加本地合成响应。故障与成功保存通过浏览器路由模拟，后端持久化及并发另由临时 SQLite 测试验证，不构成生产接口、PostgreSQL 或真实移动设备验收。未部署。
 
 证据目录：`C:\Users\Administrator\.codex\visualizations\2026\11\09\01a1bef8-50f4-77e1-a1be-76104594fa61`。浏览器结果 `franchise-fix-browser-qa.json`；截图 `franchise-fixed-list-1440.png`、`franchise-fixed-drawer-1440.png`、`franchise-fixed-drawer-390.png`、`franchise-fixed-form-390.png` 和 `franchise-fixed-forced-colors.png`。
+
+## 19. 共享分页样式覆盖与窄容器补查（2026-11-09）
+
+用户截图暴露出第16节验收遗漏：旧 CRM 的通用 label/button 选择器覆盖共享分页，使条数标签上下堆叠、48px 选择框与40px按钮错位；同类覆盖还让手机隐藏页码重新出现。原来的整页溢出检查未发现内部按钮重叠。修复限定在共享分页和紧邻分页的表格底边，保留原生选择、分页逻辑及业务数据。
+
+| 检查 | 本轮结果 |
+| --- | --- |
+| 实测对齐 | 1920px 合作机构页：选择框与全部按钮 top=959px、高48px；标签保持横排。表格末行及包装层底边为0，分页顶边1px，去掉重复横线 |
+| 页面矩阵 | 22个分页入口 × 1920／1440／768／390 共88项，无控件相交、分页容器越界或整页横向溢出；分页按钮及选择框均48px。其中企业动态4项用浏览器拦截提供新版 events 响应结构，其他84项使用现有合成预览接口 |
+| 窄容器复核 | 320／360／640／768／1024px 的137／1024页、未知总数、七页按钮、省略号，以及实际容器640／641px两侧，共42个布局状态通过。768px有侧栏时容器仅470px，已正确切换为仅当前页；此项为真实构建页面临时DOM状态，不写API |
+| 交互与降级 | 下一页显示11–20／25；切20条回1–20／25；Enter下一页显示21–25／25。Chrome模拟 forced-colors 与 reduced-motion，当前页保留系统选中色、transform为none，未溢出 |
+| 自动检查 | Pagination与LegacyPage两文件15项通过；lint、TypeScript和完整业务构建通过，保留既有ChinaMap3D大chunk提示。构建使用独立输出目录，不覆盖正式dist |
+
+使用 Playwright 与已安装 Chrome；本地合成预览地址为 `http://127.0.0.1:4180/crm/partners`。旧预览 fixture 尚无新版企业动态 events 响应，首次进入该页会因缺少 runs 数组失败；补验仅在浏览器提供合成结构，不能据此宣称真实接口已验收。未连接生产数据、未部署，不构成真实设备或其他浏览器验收。
+
+证据沿用第18节目录：`pagination-alignment-qa.json`；截图 `pagination-alignment-before.png`、`pagination-alignment-after-desktop.png`、`pagination-alignment-after-bar.png`、`pagination-alignment-after-mobile.png`、`pagination-alignment-forced-colors.png`。构建产物独立放在该目录的 `pagination-preview/`。

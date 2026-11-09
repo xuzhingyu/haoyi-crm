@@ -384,25 +384,38 @@ input:focus, select:focus, textarea:focus { outline-color: var(--hy-primary); }
 
 /* Pagination follows the result list; counts, size and navigation occupy
    separate tracks so long labels and mobile controls cannot collide. */
-.hy-pagination { display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; min-width: 0; margin-top: 24px; padding: 16px 0 0; border-top: 1px solid var(--hy-border); color: var(--hy-secondary); font-size: 14px; line-height: 22px; }
+.hy-pagination { container: hy-pagination / inline-size; display: flex; align-items: center; flex-wrap: wrap; gap: 16px 24px; min-width: 0; margin-top: 24px; padding: 16px 0 0; border-top: 1px solid var(--hy-border); color: var(--hy-secondary); font-size: 14px; line-height: 22px; }
 .hy-pagination-summary { flex: 1 1 180px; font-variant-numeric: tabular-nums; }
-.hy-pagination .hy-pagination-size { display: flex; flex-direction: row; flex: 0 0 auto; align-items: center; gap: 12px; margin: 0; white-space: nowrap; color: var(--hy-secondary); font-weight: 400; }
-.hy-pagination .hy-pagination-size select { inline-size: 96px; max-inline-size: 96px; margin: 0; font-variant-numeric: tabular-nums; }
+/* Structural selectors keep the component above lazy CRM's generic label/button rules. */
+nav.hy-pagination > label.hy-pagination-size { display: flex; flex-direction: row; flex: 0 0 auto; align-items: center; gap: 12px; margin: 0; white-space: nowrap; color: var(--hy-secondary); font-size: inherit; line-height: inherit; font-weight: 400; }
+nav.hy-pagination > label.hy-pagination-size select { inline-size: 96px; max-inline-size: 96px; height: 48px; min-height: 48px; margin: 0; font-variant-numeric: tabular-nums; }
 .hy-pagination-controls, .hy-pagination-pages { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.hy-pagination .button { min-height: 44px; flex: none; margin: 0; white-space: nowrap; }
+.hy-pagination-controls { flex-wrap: wrap; max-width: 100%; }
+.hy-pagination-pages { flex-shrink: 0; flex-wrap: wrap; max-width: 100%; }
+nav.hy-pagination button.button { height: 48px; min-height: 48px; flex: none; margin: 0; font-size: inherit; line-height: inherit; white-space: nowrap; }
 .hy-pagination .hy-pagination-number, .hy-pagination-current, .hy-pagination-gap { min-width: 44px; display: inline-flex; align-items: center; justify-content: center; font-variant-numeric: tabular-nums; }
-.hy-pagination .hy-pagination-number { padding-inline: 8px; }
+nav.hy-pagination button.hy-pagination-number { padding-inline: 8px; }
 /* Keep the shared selected state above lazy CRM's scoped secondary-button rules. */
 .app-shell .hy-pagination .button.secondary.hy-pagination-number[aria-current='page'] { --hy-button-face: var(--hy-primary); --hy-button-edge: var(--hy-primary); --hy-button-elevation: var(--hy-button-shadow); color: var(--hy-on-deep); background: transparent; border-color: transparent; opacity: 1; }
-.hy-pagination-current { min-height: 44px; color: var(--hy-text); }
+.hy-pagination-current { min-height: 48px; color: var(--hy-text); }
 .hy-pagination-gap { min-width: 16px; }
 .hy-pagination :is(button, select):focus-visible { outline: 2px solid var(--hy-primary); outline-offset: 3px; }
 @media (max-width: 767px) {
   .hy-pagination { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
   .hy-pagination .hy-pagination-size { justify-content: space-between; }
+  .hy-pagination-controls { justify-content: space-between; flex-wrap: wrap; width: 100%; }
+  nav.hy-pagination .hy-pagination-controls > button { padding-inline: 8px; font-size: 14px; }
+  .hy-pagination-pages, .hy-pagination-current { flex: 1 0 auto; justify-content: center; }
+  nav.hy-pagination .hy-pagination-pages > :not([aria-current='page']) { display: none; }
+}
+/* A tablet sidebar or narrow panel can leave less room than the viewport suggests. */
+@container hy-pagination (max-width: 640px) {
+  .hy-pagination-summary, nav.hy-pagination > label.hy-pagination-size { flex-basis: 100%; }
+  nav.hy-pagination > label.hy-pagination-size { justify-content: space-between; }
   .hy-pagination-controls { justify-content: space-between; width: 100%; }
-  .hy-pagination-pages { flex: 1; justify-content: center; }
-  .hy-pagination-pages > :not([aria-current='page']) { display: none; }
+  nav.hy-pagination .hy-pagination-controls > button { padding-inline: 8px; }
+  .hy-pagination-pages, .hy-pagination-current { flex: 1 0 auto; justify-content: center; }
+  nav.hy-pagination .hy-pagination-pages > :not([aria-current='page']) { display: none; }
 }
 @media (forced-colors: active) {
   .nav-section-toggle { color: ButtonText; background: ButtonFace; }

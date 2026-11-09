@@ -60,6 +60,10 @@
 }
 .legacy-crm .studio-panel, .legacy-crm .studio-ledger { padding: 24px; }
 .legacy-crm .studio-ledger .table-scroll { border-radius: 0; box-shadow: none; border-inline: 0; }
+/* Adjacent pagination owns the sole divider below a paginated table. */
+.legacy-crm .table-scroll:has(+ nav.hy-pagination) { border-bottom: 0; }
+.legacy-crm .table-scroll:has(+ nav.hy-pagination) tbody tr:last-child > :is(th, td) { border-bottom: 0; }
+.legacy-crm .table-scroll + nav.hy-pagination { margin-top: 0; }
 .legacy-crm th { color: var(--hy-secondary); background: var(--hy-surface-subtle); font-weight: 500; }
 .legacy-crm td { color: var(--hy-body); background: var(--hy-surface); }
 .legacy-crm tbody tr:hover td { background: var(--hy-primary-soft); }
