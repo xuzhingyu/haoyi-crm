@@ -1,0 +1,22 @@
+{
+  "capturedOn": "2026-11-06",
+  "notes": "System screenshots are unretouched browser captures. Patent screenshots are cropped to remove browser-service navigation and empty margins. Drone images are original company catalog cover assets. Interface counts and amounts are not personal performance metrics.",
+  "assets": [
+    {"file":"cert-software.png","source":"user-provided attachment codex-clipboard-3a2d00ca-2473-4057-9282-1e3573af986d.png","title":"CMMI 与质量管理体系认证信息","notes":"Original bytes preserved. Certification listing screenshot, not an original certificate."},
+    {"file":"cert-security.png","source":"user-provided attachment codex-clipboard-d6636d7a-ac64-4f56-827b-331c3a59023f.png","title":"信息安全管理体系认证信息","notes":"Original bytes preserved. Certification listing screenshot, not an original certificate."},
+    {"file":"bridge-doctor.jpg","source":"http://8.140.206.234:8000/bridge-doctor/#/project/list/detail/roadBridge/884802693906433","title":"桥检博士 · 桥梁检查详情"},
+    {"file":"drone-liyang.png","source":"https://where.dongquzhihui.com/where/api/products/628510167416832/cover","title":"溧阳通用路桥无人机巡检系统","attribution":"公司产品案例"},
+    {"file":"drone-macau.png","source":"https://where.dongquzhihui.com/where/api/products/629118039506944/cover","title":"澳门无人机路面巡查智慧平台","attribution":"公司产品案例"},
+    {"file":"drone-ninghu.jpg","source":"https://where.dongquzhihui.com/where/api/products/629188684169216/cover","title":"江苏宁沪高速无人机智能巡检系统","attribution":"公司产品案例"},
+    {"file":"bridge-design-workbench.jpg","source":"https://demo.dongquzhihui.com/ai-bridge-design/#/workbench","title":"桥梁养护设计辅助系统 · 工作台","role":"交付负责人"},
+    {"file":"bridge-design-overview.jpg","source":"https://demo.dongquzhihui.com/ai-bridge-design/#/design-project/4","title":"桥梁养护设计辅助系统 · 设计工程概览","role":"交付负责人"},
+    {"file":"sutong-dashboard.jpg","source":"https://demo.dongquzhihui.com/sutong-ai-bridge/#/dashboard","title":"大桥 AI 养护决策系统 · 工作台","role":"交付负责人"},
+    {"file":"sutong-knowledge.jpg","source":"https://demo.dongquzhihui.com/sutong-ai-bridge/#/knowledge/documents","title":"大桥 AI 养护决策系统 · 文档知识","role":"交付负责人"},
+    {"file":"patent-knowledge.jpg","source":"https://patents.google.com/patent/CN121257690B/zh","title":"一种业务系统用知识图谱实体精准识别关系系统","publication":"CN121257690B"},
+    {"file":"patent-multimodal.jpg","source":"https://patents.google.com/patent/CN120670583B/zh","title":"基于语音识别与多模态交互的智能图表动态生成方法","publication":"CN120670583B"},
+    {"file":"thank-you.jpg","source":"existing personal report evidence asset","title":"盐城客户感谢信","notes":"Original bytes preserved."},
+    {"file":"vehicle-home.png","source":"haoyi-system/artifacts/ui-upgrade-20261103/native/03-home-loaded.png","title":"浩宜智检 · 车辆工作台","notes":"Android simulator capture; existing original bytes preserved."},
+    {"file":"vehicle-review.png","source":"haoyi-system/artifacts/ui-upgrade-20261103/native/04-review.png","title":"浩宜智检 · AI 结果复核","notes":"Android simulator capture with historical result replay; existing original bytes preserved."},
+    {"file":"vehicle-annotation.png","source":"haoyi-system/artifacts/ui-upgrade-20261103/native/05-annotation.png","title":"浩宜智检 · 人工修订","notes":"Android simulator capture; existing original bytes preserved."}
+  ]
+}

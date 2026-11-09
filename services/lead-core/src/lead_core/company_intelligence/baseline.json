@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "as_of": "2026-11-09",
+  "coverage_status": "partial_public_baseline",
+  "source_scope": "public_web_only",
+  "coverage_note": "首次公开来源基线，不代表全部历史、完整工商档案或所有子公司已覆盖；无相关结果不等于无风险。",
+  "companies": [
+    {
+      "id": "rongda",
+      "name": "上海容大数字技术有限公司",
+      "verification_status": "official_record",
+      "relationship_note": "政府历史记录已匹配主体；2026-11-09天眼查询的当前组织关系见独立天眼数据文件。",
+      "unified_social_credit_code": "913101140938289656",
+      "identity_status": "historical_official_match",
+      "subsidiary_coverage": "pending_registry_verification"
+    },
+    {
+      "id": "haoyi",
+      "name": "上海浩宜信息科技有限公司",
+      "verification_status": "official_record",
+      "relationship_note": "2023年企业文章称容大全资子公司；2026-11-09天眼股权树为容大持股92%，以当前天眼文件为准。",
+      "unified_social_credit_code": "91310114569575474Q",
+      "identity_status": "historical_official_match",
+      "subsidiary_coverage": "pending_registry_verification"
+    },
+    {
+      "id": "hengbao",
+      "name": "上海横保信息科技有限公司",
+      "verification_status": "pending_verification",
+      "relationship_note": "公开网页未匹配；主任务天眼已核验主体，公司ID7466934159，当前工商与关系以独立天眼文件为准。",
+      "unified_social_credit_code": null,
+      "identity_status": "public_search_unresolved",
+      "subsidiary_coverage": "see_tianyan_dataset",
+      "note": "公开精确检索未命中；主任务已通过天眼AI核验到ID7466934159、代码91310230MAED978H2D，当前工商信息见独立天眼数据文件，不以公开搜索未命中覆盖该查询。"
+    }
+  ],
+  "relationships": [
+    {
+      "parent_company": "上海容大数字技术有限公司",
+      "child_company": "上海浩宜信息科技有限公司",
+      "relationship": "wholly_owned_subsidiary_claim",
+      "ownership_percent": 100,
+      "source_url": "https://caifuhao.eastmoney.com/news/20230531102620810514580",
+      "source_date": "2023-05-31",
+      "verification_status": "company_statement",
+      "current_registry_verified": false,
+      "note": "仅2023年企业自述。主任务2026-11-09天眼股权树返回当前持股92%，详见独立天眼数据文件；不可将本历史声明作当前100%关系。"
+    }
+  ],
+  "records": [
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "政府历史名单载明容大统一社会信用代码",
+      "category": "business",
+      "summary": "上海市科委公开附件列示容大及代码 913101140938289656；该历史名单用于主体消歧，不证明当前登记状态或资质仍有效。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/1b/1bfa5c059a95468d88f64e6b47e1d790/36664caaf6d3584ef48caced4e279920.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "2021年拟认定高企名单载明浩宜主体代码",
+      "category": "business",
+      "summary": "2021年度上海市第五批拟认定高新技术企业名单第1256项列示浩宜，代码 91310114569575474Q；拟认定不等于最终认定，更不表示当前资质有效。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/f1/f1f9c2eec6204d38834f9d134a0c4d1a/38fc7362d525d3c6983086f9d14cfb2a.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2021
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大入列2020年第四批科技型中小企业名单",
+      "category": "business",
+      "summary": "名单第387项，入库登记编号 202031011408006406。仅记录该年度历史入库信息。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/2d/2d7c00b31d664277b75e3f1d5c3a2389/1561b068c3c846e79b8f253730b1ebc3.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2020
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浩宜入列2020年第四批科技型中小企业名单",
+      "category": "business",
+      "summary": "名单第433项，入库登记编号 202031011408006452。仅记录该年度历史入库信息。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/2d/2d7c00b31d664277b75e3f1d5c3a2389/1561b068c3c846e79b8f253730b1ebc3.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2020
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大2021年科技型中小企业入库记录",
+      "category": "business",
+      "summary": "官方附件列示入库登记编号 202131011408003918；不据此推断2026年资质。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/ec/ecb677a96c794eae9bf9737a7df7f251/e8487d01d20e7e92dee93a1c146829f1.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2021
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大入列2022年第四批科技型中小企业名单",
+      "category": "business",
+      "summary": "名单第21项，入库登记编号 202231011508008413。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/83/836ae3457a7640a986601f38f45ea3a0/b796c6c8bb5604083b363e2676c94d6b.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2022
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浩宜2023年科技型中小企业入库记录",
+      "category": "business",
+      "summary": "官方附件第682项列示入库登记编号 202331011408003154。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/14/1467700fe0404d8bb642152aac796ec0/27a229c133e1a6184fd2f99fb3f2b73c.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2023
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浩宜2024年科技型中小企业入库记录",
+      "category": "business",
+      "summary": "官方附件第4816项列示入库登记编号 2024310114A8007138。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/4d/4d08373e85604fd984cc5e1ec392285a/be1685205dfb9415d54d087a4da01a81.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2024
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大2024年科技型中小企业入库记录",
+      "category": "business",
+      "summary": "官方附件第2098项列示入库登记编号 2024310115A8008112。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/22/22b3986a2d3742afb699683979105a42/d0d7ee01de48cd624acfdad87491cb16.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2024
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浩宜2025年科技型中小企业入库记录",
+      "category": "business",
+      "summary": "官方附件第256项列示入库登记编号 2025310114A8009493。",
+      "source_name": "上海市科学技术委员会",
+      "source_url": "https://stcsm.sh.gov.cn/cmsres/21/21cd7d180acc41d2a258662cdc9d866a/75510ba03bf87865eb981adcaf9183a7.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2025
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浩宜服务机器人软件进入2019年3月软件产品评估名单",
+      "category": "business",
+      "summary": "协会2019年3月第二周软件产品评估名单列示浩宜服务机器人软件V1.0，编号沪RC-2019-0920。",
+      "source_name": "上海市软件行业协会",
+      "source_url": "https://www.softline.org.cn/News/ADetail/366",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2019
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "华为云商店企业简介披露AI语音产品组合",
+      "category": "business",
+      "summary": "商家页面自述产品包括智能外呼、质检、培训、坐席辅助及豚音营业厅终端等，并称在合肥设人工智能研究院、北京广州设办事处；研究院和办事处不能直接视为独立法人子公司。",
+      "source_name": "华为云商店·容大商家页面",
+      "source_url": "https://marketplace.huaweicloud.com/seller/32039f68f37141f1bf8d5efeca14ad5a",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "company_statement"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大品牌升级公告披露浩宜全资子公司关系",
+      "category": "news",
+      "summary": "容大署名文章宣布启用新版LOGO，并称浩宜为其全资子公司。此为2023年企业自披露，当前股权比例与控制关系尚待工商数据核验。",
+      "source_name": "东方财富财富号·上海容大数字技术有限公司",
+      "source_url": "https://caifuhao.eastmoney.com/news/20230531102620810514580",
+      "published_at": "2023-05-31",
+      "observed_at": "2026-11-09",
+      "verification_status": "company_statement"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "容大发布容聆智能拾音工牌",
+      "category": "news",
+      "summary": "企业搜狐号宣布推出容聆，组合拾音硬件、设备管理和语音分析，用于线下接待分析。文章的准确率和定位等性能表述未经本次独立验证。",
+      "source_name": "搜狐号·上海容大",
+      "source_url": "https://www.sohu.com/a/788315576_121299481",
+      "published_at": "2024-06-25",
+      "observed_at": "2026-11-09",
+      "verification_status": "company_statement"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "中信金控数字人升级项目第三中标候选人",
+      "category": "business",
+      "summary": "采购平台更正公示将容大列为第三中标候选人，报价289.6万元。候选人及投标报价不等于最终中标或已确认收入。",
+      "source_name": "中信金控采购共享平台",
+      "source_url": "https://ebid.cfhc.citic/cms/default/webfile/ywgg2/20231129/914584641296400384.html",
+      "published_at": "2023-11-29",
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "上海农商银行2025年度客服质检服务成交",
+      "category": "business",
+      "summary": "官方采购结果列示容大为包件4客服质检系统的成交供应商，项目编号JZCG2025000107；公告未披露该包件成交金额。",
+      "source_name": "上海农商银行供应商门户",
+      "source_url": "https://pms2g.shrcb.com/cms/cmsjieguogg/ef50013b997a4cdb91986ae6d33f6293.html",
+      "published_at": "2025-04-22",
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "上海农商银行ASR授权采购成交",
+      "category": "business",
+      "summary": "容大为智能座席助手功能项目语音识别ASR授权license购置的成交供应商，项目编号JZCG2025000448，采购方式竞争性谈判。公告未披露金额。",
+      "source_name": "上海农商银行供应商门户",
+      "source_url": "https://pms2g.shrcb.com/cms/cmsjieguogg/ce02f91337b5450eb341b653c74608c5.html",
+      "published_at": "2025-10-27",
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "上海农商银行2026年度智能语音外呼系统服务成交",
+      "category": "business",
+      "summary": "2026年度储蓄国债业务等系统C模式服务项目公告列示容大为包件6智能语音外呼系统成交供应商，项目编号JZCG2026000191。公告未披露金额。",
+      "source_name": "上海农商银行供应商门户",
+      "source_url": "https://pms2g.shrcb.com/cms/cmsjieguogg/0bde970f0ded41f0b834e0beab852c48.html",
+      "published_at": "2026-05-12",
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "苏州农商银行人工智能外包标段候选人公示",
+      "category": "business",
+      "summary": "官方公示将浩宜列入2026年度数据类通用技术外包服务项目人工智能标段候选供应商名单，编号LX202604303388-04；该链接为候选人公示，不据此认定最终中标。",
+      "source_name": "苏州农商银行采购平台",
+      "source_url": "https://www.szrcb.com/cgpt-web/web/index/show.do?articleId=fe2659892c584beaa56d02accb8bb835",
+      "published_at": "2026-08-19",
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record"
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "媒体报道浩宜汽车后市场智能体实践",
+      "category": "news",
+      "summary": "中关村在线报道百度智能云大会，提到浩宜围绕新能源汽车维修构建接待、诊断、核价、维修、理赔、营销数字员工，维修智能体接入百度搭子企业版，Hogee支持营销。属媒体报道，未核验项目实际经营收益或技术准确率。",
+      "source_name": "中关村在线",
+      "source_url": "https://news.zol.com.cn/1266/12667732.html",
+      "published_at": "2026-10-30",
+      "observed_at": "2026-11-09",
+      "verification_status": "media_report"
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "媒体调查AI外呼及容大回应，需跟踪后续",
+      "category": "sentiment",
+      "summary": "潇湘晨报官方微博报道相关部门调查AI外呼企业，并记录容大回应：主要客户为银行保险机构、无外呼线路，先前介绍存在夸大，线索为公开企业数据。该报道不构成对容大的行政处罚或违法认定，须保留回应并跟踪正式结论。",
+      "source_name": "潇湘晨报官方微博（新浪展示页）",
+      "source_url": "https://www.sina.cn/news/detail/5279625307751596.html",
+      "published_at": "2026-03-23",
+      "observed_at": "2026-11-09",
+      "verification_status": "media_report",
+      "sentiment": "attention",
+      "needs_review": true
+    },
+    {
+      "company_name": "上海容大数字技术有限公司",
+      "title": "南京银行SDK说明列示容大为语音识别供应商",
+      "category": "business",
+      "summary": "南京银行公开PDF在语音识别SDK条目列示供应商为容大，网址为www.rongdatec.com。属于供应商披露，不包含合同金额或业绩承诺。",
+      "source_name": "南京银行",
+      "source_url": "https://www.njcb.com.cn/njcb/attachDir/2023/11/2023110816152694429.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2023
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "浦发银行智能工牌采购候选人记录",
+      "category": "business",
+      "summary": "官方结果公告将浩宜列为候选供应商，中选供应商为北京明略软件系统有限公司。公告所列249.932万元不可计作浩宜收入。",
+      "source_name": "浦发银行",
+      "source_url": "https://news.spdb.com.cn/about_spd/cggg/cgcjjggg/202304/P020230404599026526632.pdf",
+      "published_at": null,
+      "observed_at": "2026-11-09",
+      "verification_status": "official_record",
+      "event_year": 2023
+    },
+    {
+      "company_name": "上海浩宜信息科技有限公司",
+      "title": "太平洋产险AI微管家中选信息线索",
+      "category": "business",
+      "summary": "采招网列表称2026-10-19结果公示中选供应商为浩宜。本次尚未取得采购方原始结果全文，待核验，不纳入已核实中标金额。",
+      "source_name": "采招网",
+      "source_url": "https://www.bidcenter.com.cn/zhaobiao/zbkeyw-71108-310106.html",
+      "published_at": "2026-10-19",
+      "observed_at": "2026-11-09",
+      "verification_status": "pending_verification"
+    }
+  ]
+}

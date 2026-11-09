@@ -1,0 +1,32 @@
+[
+  {
+    "name": "江苏交通运输企业查询候选",
+    "base_url": "https://jtyst.jiangsu.gov.cn/col/col60058/index.html",
+    "allowed_domains": ["jtyst.jiangsu.gov.cn"],
+    "allowed_path_prefixes": ["/col/col60058/"],
+    "allowed_fields": ["business_name", "city", "district", "category", "filing_number"],
+    "rate_limit_per_minute": 3,
+    "status": "candidate",
+    "personal_fields_approved": false
+  },
+  {
+    "name": "南通维修业户公示候选",
+    "base_url": "https://jtysj.nantong.gov.cn/ntjy/xzfw/content/12849022-cc9f-4c15-9fb5-7934e86bc18e.html",
+    "allowed_domains": ["jtysj.nantong.gov.cn"],
+    "allowed_path_prefixes": ["/ntjy/xzfw/content/"],
+    "allowed_fields": ["business_name", "city", "district", "category", "full_address", "filing_number"],
+    "rate_limit_per_minute": 3,
+    "status": "candidate",
+    "personal_fields_approved": false
+  },
+  {
+    "name": "无锡新吴区维修名录候选",
+    "base_url": "https://www.wnd.gov.cn/doc/2026/04/30/4769665.shtml",
+    "allowed_domains": ["www.wnd.gov.cn"],
+    "allowed_path_prefixes": ["/doc/"],
+    "allowed_fields": ["business_name", "city", "district", "category", "full_address"],
+    "rate_limit_per_minute": 3,
+    "status": "candidate",
+    "personal_fields_approved": false
+  }
+]

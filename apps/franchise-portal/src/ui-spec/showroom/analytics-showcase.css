@@ -1,0 +1,88 @@
+/* Hallmark · genre: interactive analytics · scope: app · theme: Haoyi soft neumorphism */
+.neo-analytics { display: grid; grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr); gap: 20px; width: 100%; min-width: 0; margin-bottom: 24px; color: var(--neo-text); }
+.neo-analytics-card { display: flex; flex-direction: column; min-width: 0; overflow: hidden; border: 1px solid var(--neo-border-subtle, var(--neo-border)); border-radius: var(--neo-radius); background: var(--neo-paper); box-shadow: var(--neo-paper-shadow); }
+.neo-analytics-card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 24px 24px 0; }
+.neo-analytics-card-title { margin: 0; font-size: 17px; font-weight: 600; line-height: 1.5; }
+.neo-analytics-card-header p { margin: 4px 0 0; color: var(--neo-muted); font-size: 13px; line-height: 1.5; }
+.neo-analytics-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.neo-analytics-switch { display: flex; gap: 4px; margin: 0; padding: 4px; border: 1px solid var(--neo-border-subtle, var(--neo-border)); border-radius: var(--neo-control-radius); background: var(--neo-bg); }
+.neo-analytics-switch label { position: relative; display: flex; cursor: pointer; }
+.neo-analytics-switch input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.neo-analytics-switch span { display: grid; min-height: 44px; min-width: 48px; place-items: center; border-radius: calc(var(--neo-control-radius) - 4px); color: var(--neo-muted); font-size: 13px; transition: background var(--neo-selection-duration), color var(--neo-selection-duration); }
+.neo-analytics-switch input:checked + span { color: var(--neo-text); background: var(--neo-paper); box-shadow: var(--neo-paper-shadow); }
+.neo-analytics-switch input:focus-visible + span { outline: 2px solid var(--neo-blue); outline-offset: 3px; }
+.neo-analytics-period select { min-height: 48px; max-width: 100%; padding: 0 12px; border: 1px solid var(--neo-input-border); border-radius: var(--neo-control-radius); background: var(--neo-paper); color: var(--neo-text); font: inherit; font-size: 13px; cursor: pointer; }
+.neo-analytics-period select:focus-visible, .neo-analytics-text-button:focus-visible, .neo-analytics-plot .recharts-surface:focus-visible { outline: 2px solid var(--neo-blue); outline-offset: 3px; }
+.neo-analytics-card-content { flex: 1; min-width: 0; padding: 20px 24px 16px; }
+.neo-analytics-reading { display: flex; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+.neo-analytics-reading > strong { font-size: 32px; font-weight: 600; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.neo-analytics-reading small { font-size: 13px; font-weight: 400; letter-spacing: 0; color: var(--neo-muted); }
+.neo-analytics-reading > span { color: var(--neo-muted); font-size: 13px; }
+.neo-analytics-plot { min-width: 0; height: 300px; margin-top: 12px; }
+.neo-analytics-plot .recharts-surface, .neo-analytics-radial .recharts-surface { max-width: 100%; overflow: visible; }
+.neo-analytics-card-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; min-height: 62px; padding: 8px 24px; border-top: 1px solid var(--neo-border-subtle, var(--neo-border)); color: var(--neo-muted); font-size: 12px; }
+.neo-analytics-series { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.neo-analytics-series i, .neo-analytics-tooltip i { flex-shrink: 0; width: 8px; height: 8px; border-radius: 3px; background: var(--neo-blue); }
+.neo-analytics-series strong { color: var(--neo-text); font-size: inherit; font-weight: 500; margin-left: 4px; }
+.neo-analytics-text-button { min-height: 44px; padding: 4px 0 4px 8px; border: 0; background: transparent; color: var(--neo-blue); font: inherit; cursor: pointer; text-underline-offset: 4px; }
+.neo-analytics-text-button:hover { text-decoration: underline; }
+.neo-analytics-goal { flex-shrink: 0; color: var(--neo-cyan); font-size: 12px; padding: 8px; background: var(--neo-panel-cyan, var(--neo-bg)); border-radius: 8px; }
+.neo-analytics-radial { height: 250px; position: relative; max-width: 300px; margin: 12px auto 0; }
+.neo-analytics-radial-value { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; }
+.neo-analytics-radial-value strong { font-size: 48px; font-weight: 600; letter-spacing: -2px; font-variant-numeric: tabular-nums; }
+.neo-analytics-radial-value small { font-size: 20px; margin-left: 4px; letter-spacing: 0; color: var(--neo-muted); }
+.neo-analytics-radial-value > span { margin-top: 4px; color: var(--neo-muted); font-size: 13px; }
+.neo-analytics-training-count { text-align: center; padding: 12px 0 0; }
+.neo-analytics-training-count > strong { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.neo-analytics-training-count > strong > span { font-size: 14px; font-weight: 400; color: var(--neo-muted); }
+.neo-analytics-training-count p { margin: 8px 0 0; font-size: 13px; color: var(--neo-muted); }
+.neo-analytics-summary { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; margin: 0; padding: 24px 8px; border: 1px solid var(--neo-border-subtle, var(--neo-border)); border-radius: var(--neo-radius); background: var(--neo-paper); box-shadow: var(--neo-paper-shadow); }
+.neo-analytics-summary > div { min-width: 0; padding: 0 20px; }
+.neo-analytics-summary > div + div { border-left: 1px solid var(--neo-border-subtle, var(--neo-border)); }
+.neo-analytics-summary dt { margin: 0 0 12px; color: var(--neo-muted); font-size: 13px; }
+.neo-analytics-summary dd { margin: 0; font-size: clamp(20px, 1.9vw, 26px); font-weight: 600; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.neo-analytics-summary small { color: var(--neo-muted); font-size: 13px; font-weight: 400; }
+.neo-analytics-tooltip { min-width: 160px; padding: 12px; border: 1px solid var(--neo-border); border-radius: var(--neo-control-radius); background: var(--neo-paper); box-shadow: var(--neo-float-shadow); color: var(--neo-text); font-size: 12px; }
+.neo-analytics-tooltip > span { color: var(--neo-muted); }
+.neo-analytics-tooltip > div { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+.neo-analytics-tooltip strong { margin-left: 16px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.neo-analytics-tooltip small { color: var(--neo-muted); font-size: inherit; font-weight: 400; }
+.neo-analytics-table-scroll { height: 100%; overflow: auto; overscroll-behavior: contain; }
+.neo-analytics-table-scroll table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.neo-analytics-table-scroll th, .neo-analytics-table-scroll td { padding: 12px 8px; text-align: left; border-bottom: 1px solid var(--neo-border-subtle, var(--neo-border)); }
+.neo-analytics-table-scroll th { font-weight: 500; }
+.neo-analytics-table-scroll td, .neo-analytics-table-scroll thead th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+.neo-analytics-sr { position: absolute; width: 1px; height: 1px; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 1100px) {
+  .neo-analytics { grid-template-columns: minmax(0, 1fr); }
+  .neo-analytics-training .neo-analytics-card-content { display: flex; align-items: center; justify-content: center; gap: 32px; }
+  .neo-analytics-training .neo-analytics-radial { flex: 0 1 250px; width: 250px; margin: 0; }
+  .neo-analytics-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 24px; }
+  .neo-analytics-summary > div:nth-child(3) { border-left: 0; }
+}
+@media (max-width: 600px) {
+  .neo-analytics { gap: 16px; }
+  .neo-analytics-card-header { flex-wrap: wrap; padding: 20px 20px 0; }
+  .neo-analytics-controls { width: 100%; justify-content: space-between; }
+  .neo-analytics-switch span { min-height: 44px; min-width: 52px; }
+  .neo-analytics-period select { font-size: 16px; }
+  .neo-analytics-card-content { padding: 16px 16px 12px; }
+  .neo-analytics-card-footer { padding-inline: 20px; }
+  .neo-analytics-plot { height: 250px; }
+  .neo-analytics-training .neo-analytics-card-content { display: block; }
+  .neo-analytics-training .neo-analytics-radial { width: 100%; margin: 0 auto; }
+  .neo-analytics-training-count { padding-bottom: 12px; }
+  .neo-analytics-summary { padding: 20px 0; }
+  .neo-analytics-summary > div { padding-inline: 16px; }
+  .neo-analytics-summary dd { font-size: 21px; }
+}
+@media (prefers-reduced-motion: reduce) { .neo-analytics-switch span { transition: none; } }
+:root[data-neo-motion='off'] .neo-analytics-switch span { transition: none; }
+@media (forced-colors: active) {
+  .neo-analytics-card, .neo-analytics-summary, .neo-analytics-tooltip { border-color: CanvasText; box-shadow: none; }
+  .neo-analytics-switch input:checked + span { outline: 2px solid Highlight; }
+  .neo-analytics-plot .recharts-area path, .neo-analytics-plot .recharts-rectangle { stroke: Highlight; }
+  .neo-analytics-plot .recharts-area-area { fill: Canvas; }
+  .neo-analytics-radial .recharts-radial-bar-sector path { fill: Highlight; }
+  .neo-analytics-plot .recharts-cartesian-grid line { stroke: GrayText; }
+}

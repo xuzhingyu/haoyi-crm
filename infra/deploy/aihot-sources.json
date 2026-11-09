@@ -1,0 +1,88 @@
+{
+  "sources": [
+    {
+      "id": "picc-news",
+      "name": "人保财险",
+      "kind": "web_list",
+      "config": {
+        "url": "https://property.picc.com.cn/cx_gywm/zxzx/xwsd/",
+        "parseMode": "html",
+        "itemSelector": "li.list-item",
+        "linkSelector": "a",
+        "titleSelector": "h3.tit",
+        "publishedAtSelector": "span.time",
+        "allowUrlPrefixes": [
+          "https://property.picc.com.cn/cx_gywm/zxzx/xwsd/"
+        ],
+        "_aihot": {
+          "initialBackfillLimit": 12
+        },
+        "publishedAtUtcOffset": "+08:00"
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "保险科技"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "pingan-news",
+      "name": "中国平安",
+      "kind": "web_list",
+      "config": {
+        "url": "https://www.pingan.cn/zh/common/pinganxinwen_zh.shtml",
+        "parseMode": "html",
+        "itemSelector": "li:has(a[href*='/zh/common/cn_news/'])",
+        "linkSelector": "a",
+        "titleSelector": "a",
+        "publishedAtSelector": "span",
+        "allowUrlPrefixes": [
+          "https://www.pingan.cn/zh/common/cn_news/"
+        ],
+        "_aihot": {
+          "initialBackfillLimit": 12
+        },
+        "publishedAtUtcOffset": "+08:00"
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "保险科技"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    },
+    {
+      "id": "cpic-news",
+      "name": "中国太保",
+      "kind": "web_list",
+      "config": {
+        "url": "https://m.cpic.com.cn/aboutUs/gsdt/rdxw/index.shtml",
+        "parseMode": "html",
+        "itemSelector": ".list > a.item",
+        "linkSelector": "a.item",
+        "titleSelector": ".title",
+        "allowUrlPrefixes": [
+          "https://m.cpic.com.cn/c/"
+        ],
+        "_aihot": {
+          "initialBackfillLimit": 10
+        },
+        "publishedAtUtcOffset": "+08:00",
+        "publishedAtRegex": "data-publish[tT]ime=[\"']([^\"']+)[\"']"
+      },
+      "tier": "T1",
+      "participation_mode": "editorial",
+      "interval_minutes": 360,
+      "tags": [
+        "保险科技"
+      ],
+      "site_fulltext": false,
+      "syndicate_fulltext": false
+    }
+  ]
+}

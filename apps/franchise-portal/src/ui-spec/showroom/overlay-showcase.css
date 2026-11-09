@@ -1,0 +1,82 @@
+/* Hallmark · genre: dialogs and contextual controls · scope: app · theme: Haoyi soft neumorphism */
+/* All hy-* overrides are restricted to the independent showroom, including body portals. */
+html[data-neo-showroom] .hy-dialog { border: 1px solid var(--neo-border-subtle); border-radius: var(--neo-radius); background: var(--neo-paper); color: var(--neo-text); box-shadow: var(--neo-float-shadow); }
+html[data-neo-showroom] .hy-dialog::backdrop { background: var(--neo-sheet-backdrop); backdrop-filter: blur(4px); }
+html[data-neo-showroom] .hy-dialog > header { gap: 20px; padding: 24px; background: var(--neo-paper); border-bottom: 1px solid var(--neo-border-subtle); }
+html[data-neo-showroom] .hy-dialog > header h2 { color: var(--neo-text); font-size: 20px; line-height: 1.4; font-weight: 600; }
+html[data-neo-showroom] .hy-dialog__body { min-height: 0; padding: 24px; background: var(--neo-paper); color: var(--neo-text); line-height: 1.7; }
+html[data-neo-showroom] .hy-dialog > footer { gap: 12px; padding: 16px 24px; border-top: 1px solid var(--neo-border-subtle); background: var(--neo-bg); }
+html[data-neo-showroom] .hy-dialog__notice { border: 1px solid var(--neo-border); border-radius: var(--neo-control-radius); padding: 12px; background: var(--neo-settings-surface); color: var(--neo-text); }
+html[data-neo-showroom] .hy-dialog--drawer { border-radius: var(--neo-radius) 0 0 var(--neo-radius); }
+html[data-neo-showroom] .neo-overlay-dialog[data-hy-phase='entering'] { animation: neo-overlay-enter 320ms var(--neo-ease) both; }
+html[data-neo-showroom] .neo-overlay-dialog[data-hy-phase='open'] { animation: none; }
+html[data-neo-showroom] .neo-overlay-dialog[data-hy-phase='exiting'] { animation: neo-overlay-exit 180ms ease-in both; pointer-events: none; }
+html[data-neo-showroom] .neo-overlay-dialog[data-hy-overlay='drawer'][data-hy-phase='entering'] { animation-name: neo-drawer-enter; animation-duration: 360ms; }
+html[data-neo-showroom] .neo-overlay-dialog[data-hy-overlay='drawer'][data-hy-phase='exiting'] { animation-name: neo-drawer-exit; }
+html[data-neo-showroom] .neo-overlay-dialog[data-motion='rich'][data-hy-phase='entering'] > header { animation: neo-overlay-content-in 260ms 40ms var(--neo-ease) both; }
+html[data-neo-showroom] .neo-overlay-dialog[data-motion='rich'][data-hy-phase='entering'] > .hy-dialog__body { animation: neo-overlay-content-in 240ms 60ms var(--neo-ease) both; }
+html[data-neo-showroom] .neo-overlay-dialog[data-motion='rich'][data-hy-phase='entering'] > footer { animation: neo-overlay-content-in 240ms 80ms var(--neo-ease) both; }
+html[data-neo-showroom] .neo-overlay-dialog[data-motion='gentle'][data-hy-phase='entering'] { animation: neo-overlay-fade-in 160ms ease-out both; }
+html[data-neo-showroom] .neo-overlay-dialog[data-motion='gentle'][data-hy-phase='exiting'] { animation: neo-overlay-fade-out 100ms ease-in both; }
+@keyframes neo-overlay-enter { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes neo-overlay-exit { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(8px) scale(.985); } }
+@keyframes neo-drawer-enter { from { opacity: .5; transform: translateX(48px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes neo-drawer-exit { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(32px); } }
+@keyframes neo-overlay-content-in { from { opacity: .3; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes neo-overlay-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes neo-overlay-fade-out { from { opacity: 1; } to { opacity: 0; } }
+html[data-neo-showroom] .neo-popup-anchor { display: inline-flex; }
+html[data-neo-showroom] .neo-overlay-popover { position: fixed; z-index: var(--hy-z-dropdown); width: min(320px, calc(100dvw - 32px)); max-height: calc(100dvh - 32px); overflow-y: auto; border: 1px solid var(--neo-border-subtle); border-radius: var(--neo-radius); background: var(--neo-paper); color: var(--neo-text); box-shadow: var(--neo-float-shadow); transform-origin: top left; }
+html[data-neo-showroom] .neo-overlay-popover > header { padding: 20px 20px 0; }
+html[data-neo-showroom] .neo-overlay-popover h3 { margin: 0; font-size: 16px; line-height: 1.5; font-weight: 600; }
+html[data-neo-showroom] .neo-overlay-popover-content { padding: 12px 20px 20px; font-size: 14px; line-height: 1.6; color: var(--neo-muted); }
+html[data-neo-showroom] .neo-overlay-popover-content p { margin: 0; }
+html[data-neo-showroom] .neo-overlay-popover > footer { padding: 12px 20px; border-top: 1px solid var(--neo-border-subtle); background: var(--neo-bg); }
+html[data-neo-showroom] .neo-overlay-popover[data-hy-phase='entering'] { animation: neo-popup-enter 220ms var(--neo-ease) both; }
+html[data-neo-showroom] .neo-overlay-popover[data-hy-phase='exiting'] { animation: neo-popup-exit 100ms ease-in both; }
+html[data-neo-showroom] .neo-overlay-popover[data-motion='gentle'][data-hy-phase='entering'] { animation: neo-overlay-fade-in 120ms ease-out both; }
+html[data-neo-showroom] .hy-action-menu, html[data-neo-showroom] .hy-select-listbox { padding: 8px; border: 1px solid var(--neo-border-subtle); border-radius: var(--neo-control-radius); background: var(--neo-paper); color: var(--neo-text); box-shadow: var(--neo-float-shadow); backdrop-filter: none; animation: neo-popup-enter 180ms var(--neo-ease) both; transform-origin: top center; }
+html[data-neo-showroom] .hy-action-menu [role='menuitem'], html[data-neo-showroom] .hy-select-option { min-height: 44px; gap: 12px; padding: 12px; border-radius: calc(var(--neo-control-radius) - 4px); font-size: 14px; color: var(--neo-text); transition: background var(--neo-selection-duration), color var(--neo-selection-duration); }
+html[data-neo-showroom] .hy-action-menu [role='menuitem']:hover, html[data-neo-showroom] .hy-action-menu [role='menuitem']:focus-visible, html[data-neo-showroom] .hy-select-option[data-active='true'] { background: var(--neo-panel-blue); color: var(--neo-text); }
+html[data-neo-showroom] .hy-select-option[aria-selected='true'] { background: var(--neo-panel-blue); font-weight: 600; }
+html[data-neo-showroom] .hy-select-option[aria-disabled='true'] { color: var(--neo-muted); opacity: .6; }
+html[data-neo-showroom] .hy-action-menu .hy-action-menu-danger { color: var(--neo-danger); }
+html[data-neo-showroom] .neo-tooltip { max-width: min(280px, calc(100dvw - 32px)); border-radius: var(--neo-control-radius); background: var(--neo-deep); color: var(--neo-on-deep); padding: 12px 16px; line-height: 1.5; animation: neo-tooltip-enter 160ms ease-out both; }
+@keyframes neo-popup-enter { from { opacity: 0; transform: translateY(-5px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes neo-popup-exit { from { opacity: 1; transform: translateY(0) scale(1); } to { opacity: 0; transform: translateY(-3px) scale(.985); } }
+@keyframes neo-tooltip-enter { from { opacity: 0; transform: translateX(-50%) translateY(4px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+html[data-neo-showroom] dialog.neo-morph-dialog { background: var(--neo-paper); border-color: var(--neo-border-subtle); }
+html[data-neo-showroom] .neo-sheet-handle { min-height: 44px; }
+html[data-neo-showroom] .neo-sheet-choice { display: flex; align-items: center; gap: 12px; min-height: 44px; font-weight: 400; }
+html[data-neo-showroom] .neo-sheet-choice input[type='checkbox'] { flex-shrink: 0; width: 20px; height: 20px; min-height: 20px; margin: 0; padding: 0; box-shadow: none; accent-color: var(--neo-blue); }
+html[data-neo-showroom] .neo-sheet-heading, html[data-neo-showroom] .neo-sheet-body { background: var(--neo-paper); border-color: var(--neo-border-subtle); }
+html[data-neo-showroom] .neo-sheet-position > span { display: inline-block; animation: neo-snap-confirm var(--neo-success-duration) ease-out; }
+html[data-neo-showroom] .neo-sheet-footer { align-items: center; justify-content: space-between; flex-wrap: wrap; border-color: var(--neo-border-subtle); background: var(--neo-bg); }
+html[data-neo-showroom] .neo-sheet-step-actions { display: flex; gap: 8px; margin-left: auto; }
+html[data-neo-showroom] .neo-sheet-detents { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--neo-border-subtle); border-radius: var(--neo-control-radius); background: var(--neo-paper); }
+html[data-neo-showroom] .neo-sheet-detents button { min-width: 46px; min-height: 44px; padding: 8px; border: 0; border-radius: calc(var(--neo-control-radius) - 4px); font: inherit; font-size: 12px; color: var(--neo-muted); background: transparent; cursor: pointer; transition: color var(--neo-selection-duration), background var(--neo-selection-duration); }
+html[data-neo-showroom] .neo-sheet-detents button[aria-pressed='true'] { color: var(--neo-blue-text); background: var(--neo-panel-blue); font-weight: 600; }
+html[data-neo-showroom] .neo-morph-dialog[data-motion='gentle'] { transition-duration: 180ms; transition-timing-function: ease-out; }
+html[data-neo-showroom] .neo-morph-dialog[data-motion='gentle'][data-hy-phase='entering'] { animation-duration: 180ms; }
+html[data-neo-showroom] .neo-morph-dialog[data-motion='gentle'][data-hy-phase='exiting'] { animation-duration: 120ms; }
+html[data-neo-showroom] .neo-morph-dialog[data-motion='gentle'] .neo-sheet-position > span { animation: neo-overlay-fade-in 160ms ease-out; }
+@keyframes neo-snap-confirm { from { transform: translateY(3px); opacity: .5; } to { transform: translateY(0); opacity: 1; } }
+html[data-neo-showroom][data-neo-motion='gentle'] .hy-action-menu, html[data-neo-showroom][data-neo-motion='gentle'] .hy-select-listbox { animation: neo-overlay-fade-in 120ms ease-out; }
+html[data-neo-showroom][data-neo-motion='off'] .hy-dialog, html[data-neo-showroom][data-neo-motion='off'] .hy-dialog *, html[data-neo-showroom][data-neo-motion='off'] .hy-action-menu, html[data-neo-showroom][data-neo-motion='off'] .hy-select-listbox, html[data-neo-showroom][data-neo-motion='off'] .hy-select-option, html[data-neo-showroom][data-neo-motion='off'] .neo-tooltip, html[data-neo-showroom][data-neo-motion='off'] .neo-overlay-popover, html[data-neo-showroom][data-neo-motion='off'] .neo-morph-dialog *, html[data-neo-showroom] [data-motion='off'].neo-overlay-dialog, html[data-neo-showroom] [data-motion='off'].neo-overlay-popover, html[data-neo-showroom] [data-motion='off'].neo-morph-dialog, html[data-neo-showroom] [data-motion='off'].neo-morph-dialog * { animation: none; transition: none; }
+@media (max-width: 767px) {
+  html[data-neo-showroom] .hy-dialog--drawer { border-radius: 0; }
+  html[data-neo-showroom] .hy-dialog > header, html[data-neo-showroom] .hy-dialog__body { padding: 20px; }
+  html[data-neo-showroom] .hy-dialog > footer { padding: 16px 20px max(16px, env(safe-area-inset-bottom)); }
+  html[data-neo-showroom] .neo-sheet-detents { flex: 1; }
+  html[data-neo-showroom] .neo-sheet-detents button { flex: 1; }
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  html[data-neo-showroom] .hy-dialog, html[data-neo-showroom] .hy-dialog *, html[data-neo-showroom] .hy-action-menu, html[data-neo-showroom] .hy-select-listbox, html[data-neo-showroom] .hy-select-option, html[data-neo-showroom] .neo-tooltip, html[data-neo-showroom] .neo-overlay-popover, html[data-neo-showroom] .neo-morph-dialog, html[data-neo-showroom] .neo-morph-dialog * { animation: none !important; transition: none !important; }
+}
+@media (forced-colors: active) {
+  html[data-neo-showroom] .hy-dialog, html[data-neo-showroom] .hy-action-menu, html[data-neo-showroom] .hy-select-listbox, html[data-neo-showroom] .neo-overlay-popover { border-color: CanvasText; background: Canvas; color: CanvasText; box-shadow: none; }
+  html[data-neo-showroom] .hy-dialog::backdrop { backdrop-filter: none; }
+  html[data-neo-showroom] .hy-select-option[aria-selected='true'], html[data-neo-showroom] .hy-select-option[data-active='true'], html[data-neo-showroom] .neo-sheet-detents button[aria-pressed='true'] { outline: 2px solid Highlight; outline-offset: -3px; }
+}
+@media (prefers-reduced-transparency: reduce) { html[data-neo-showroom] .hy-dialog::backdrop { backdrop-filter: none; } }
+html[data-neo-showroom][data-hy-transparency='reduced'] .hy-dialog::backdrop { backdrop-filter: none; }

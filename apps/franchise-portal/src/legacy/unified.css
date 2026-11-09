@@ -1,0 +1,249 @@
+/* Production adapter for the retained CRM business layouts. */
+.legacy-crm {
+  --ink: var(--hy-text); --muted: var(--hy-secondary); --line: var(--hy-border);
+  --surface: var(--hy-surface); --canvas: var(--hy-bg); --accent: var(--hy-primary);
+  --success: var(--hy-success); --danger: var(--hy-danger-text);
+  --radius: var(--hy-radius-panel); --rail-business: 300px;
+  color: var(--hy-body); background: transparent; font-family: inherit; min-width: 0;
+}
+.legacy-page { padding: 24px 24px 48px; max-width: 1680px; margin: auto; }
+.legacy-crm .topbar { height: auto; min-height: 0; background: transparent; border: 0; padding: 0; margin: 0 0 24px; max-width: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.legacy-crm .topbar h1, .legacy-crm .studio-page-heading h1 { font-size: 24px; line-height: 32px; font-weight: 600; color: var(--hy-text); }
+.legacy-crm .topbar p, .legacy-crm .studio-page-heading p, .legacy-crm .studio-section-heading p { display: none; }
+.legacy-crm .support-view { max-width: none; padding: 0; }
+.legacy-crm .support-view > .topbar { margin-bottom: 24px; }
+.legacy-crm .board { margin: 0; grid-template-columns: 300px minmax(0, 1fr); gap: 24px; max-width: none; }
+.legacy-crm .content { min-width: 0; }
+.legacy-crm h1, .legacy-crm h2, .legacy-crm h3, .legacy-crm h4 { color: var(--hy-text); font-weight: 600; }
+.legacy-crm .support-view input, .legacy-crm .support-view select, .legacy-crm .support-view textarea,
+.legacy-crm .studio-page :where(input:not([type=checkbox]), select, textarea),
+.legacy-crm .action-drawer input, .legacy-crm .action-drawer select, .legacy-crm .action-drawer textarea,
+.legacy-crm .confirm-dialog textarea, .legacy-crm .ai-drawer textarea, .legacy-crm .ai-drawer select {
+  color: var(--hy-body); border-color: var(--hy-control-border); background: var(--hy-surface); border-radius: var(--hy-radius-control);
+}
+.legacy-crm input::placeholder, .legacy-crm textarea::placeholder { color: var(--hy-muted); }
+.legacy-crm button:focus-visible, .legacy-crm a:focus-visible, .legacy-crm input:focus-visible,
+.legacy-crm select:focus-visible, .legacy-crm textarea:focus-visible { outline: 2px solid var(--hy-primary); outline-offset: 3px; }
+.legacy-crm .view-actions button, .legacy-crm .top-actions button,
+.legacy-crm .support-view button:not(.record-link):not(.close),
+.legacy-crm .action-drawer button:not(.close), .legacy-crm .confirm-dialog button,
+.legacy-crm .studio-page button {
+  border-radius: var(--hy-radius-control); font-weight: 500;
+  transition: background-color var(--hy-duration-control), color var(--hy-duration-control), border-color var(--hy-duration-control), box-shadow var(--hy-duration-control);
+}
+.legacy-crm .view-actions button, .legacy-crm .top-actions button,
+.legacy-crm .support-view button:not(.record-link):not(.close):not(.primary),
+.legacy-crm .action-drawer button:not(.close):not(.primary):not([type=submit]),
+.legacy-crm .confirm-dialog button:not(.primary), .legacy-crm .studio-page button:not(.primary) {
+  color: var(--hy-body); background: var(--hy-surface); border-color: var(--hy-control-border);
+}
+.legacy-crm .primary, .legacy-crm .studio-page .primary, .legacy-crm .studio-editor .primary,
+.legacy-crm .top-actions .ai-trigger, .legacy-crm .ai-send,
+.legacy-crm .support-view button[type=submit], .legacy-crm .action-drawer button[type=submit],
+.legacy-crm .confirm-dialog .primary {
+  background: var(--hy-primary); color: #fff; border-color: var(--hy-primary); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-sm);
+}
+.legacy-crm .primary:hover:not(:disabled), .legacy-crm .studio-page .primary:hover:not(:disabled),
+.legacy-crm .studio-editor .primary:hover:not(:disabled), .legacy-crm .support-view button[type=submit]:hover:not(:disabled),
+.legacy-crm .action-drawer button[type=submit]:hover:not(:disabled), .legacy-crm .confirm-dialog .primary:hover:not(:disabled) {
+  background: var(--hy-primary-hover); color: #fff; border-color: var(--hy-primary-hover); box-shadow: var(--hy-shadow-md);
+}
+.legacy-crm .view-actions button[aria-pressed=true], .legacy-crm .studio-tabs button[aria-pressed=true] {
+  color: var(--hy-primary-active); border-color: var(--hy-selection-edge); background: var(--hy-glass-selection); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-sm);
+}
+.legacy-crm .table-scroll, .legacy-crm .lead-cards > article, .legacy-crm .delivery-list > article,
+.legacy-crm .kanban > section, .legacy-crm .knowledge-list > article, .legacy-crm .report-list > article,
+.legacy-crm .studio-panel, .legacy-crm .studio-ledger, .legacy-crm .rail-panel,
+.legacy-crm .analytics article, .legacy-crm .executive-kpis article, .legacy-crm .ai-summary {
+  background: var(--hy-surface); border-color: var(--hy-border); border-radius: var(--hy-radius-panel); box-shadow: var(--hy-shadow-md);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.legacy-crm .studio-panel, .legacy-crm .studio-ledger { padding: 24px; }
+.legacy-crm .studio-ledger .table-scroll { border-radius: 0; box-shadow: none; border-inline: 0; }
+.legacy-crm th { color: var(--hy-secondary); background: var(--hy-surface-subtle); font-weight: 500; }
+.legacy-crm td { color: var(--hy-body); background: var(--hy-surface); }
+.legacy-crm tbody tr:hover td { background: var(--hy-primary-soft); }
+.legacy-crm td, .legacy-crm th { border-color: var(--hy-border); }
+.legacy-crm .record-link { color: var(--hy-primary); }
+.legacy-crm .selected-card, .legacy-crm .map-detail-card {
+  background: var(--hy-surface); color: var(--hy-text); border: 1px solid var(--hy-border);
+  border-radius: var(--hy-radius-panel); box-shadow: var(--hy-shadow-md);
+}
+.legacy-crm .selected-card h3, .legacy-crm .selected-card p, .legacy-crm .selected-card span { color: var(--hy-text); }
+.legacy-crm .network { background: var(--hy-surface-subtle); border-color: var(--hy-border); border-radius: var(--hy-radius-panel); }
+.legacy-crm .map-title > span, .legacy-crm .map-title > p { display: none; }
+.legacy-crm .studio-toolbar, .legacy-crm .studio-tabs, .legacy-crm .saved-views {
+  background-color: var(--hy-glass-bg); background-image: var(--hy-glass-sheen); border: 1px solid var(--hy-glass-edge);
+  border-radius: var(--hy-radius-panel); padding: 12px; box-shadow: var(--hy-glass-highlight), var(--hy-shadow-sm);
+  -webkit-backdrop-filter: var(--hy-glass-filter); backdrop-filter: var(--hy-glass-filter);
+}
+.legacy-crm .studio-tabs { gap: 8px; padding: 8px; width: fit-content; max-width: 100%; }
+.legacy-crm .studio-toolbar { gap: 12px; }
+.legacy-crm .studio-search, .legacy-crm .search-field { flex-direction: row; justify-content: flex-start; min-width: 0; }
+.legacy-crm .studio-search { background: var(--hy-surface); border-color: var(--hy-control-border); border-radius: var(--hy-radius-control); }
+.legacy-crm .studio-search input { flex: 1; width: auto; }
+.legacy-crm .studio-search:focus-within { outline: 2px solid var(--hy-primary); outline-offset: 2px; }
+.legacy-crm .studio-search input:focus { outline: none; }
+.legacy-crm .lead-search-row { display: flex; gap: 16px; align-items: end; margin: 16px 0; }
+.legacy-crm .lead-search-row .search-field { flex: 1; max-width: 520px; background: transparent; border: 0; padding: 0; margin: 0; }
+.legacy-crm .lead-search-row .search-field input { width: 100%; min-width: 0; }
+.legacy-crm .lead-search-row .filter-field { min-width: 170px; }
+.legacy-crm .saved-views { margin: 16px 0 24px; }
+.legacy-crm .saved-views .view-actions { align-items: center; }
+.legacy-crm .saved-views label { display: flex; flex-direction: row; gap: 12px; align-items: center; }
+.legacy-crm .studio-report pre { color: var(--hy-body); background: var(--hy-surface); white-space: pre-wrap; overflow-wrap: anywhere; }
+.legacy-crm .studio-editor .studio-hint, .legacy-crm .studio-hint { color: var(--hy-secondary); }
+.legacy-crm .studio-eyebrow, .legacy-crm .studio-caption { display: none; }
+.legacy-crm .notification-item { color: var(--hy-body); background: var(--hy-surface); border-color: var(--hy-border); border-radius: var(--hy-radius-panel); }
+.legacy-crm .error-state { margin: 20px 0; max-width: none; text-align: left; }
+
+/* Portals retain the same shared material; every reading body stays solid. */
+.legacy-portal-root { display: contents; }
+.legacy-crm .drawer-backdrop, .legacy-crm .modal-backdrop { z-index: 1000; background: var(--hy-overlay); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.legacy-crm .action-drawer, .legacy-crm .ai-drawer {
+  background: var(--hy-surface); color: var(--hy-body); z-index: 1001;
+  border: 1px solid var(--hy-glass-edge); border-right: 0; border-radius: 20px 0 0 20px;
+  box-shadow: var(--hy-glass-highlight), var(--hy-shadow-dialog); overflow: hidden;
+}
+.legacy-crm .action-drawer { width: min(560px, calc(100vw - 32px)); background: transparent; }
+.legacy-crm .ai-drawer { overflow-y: auto; }
+.legacy-crm .action-drawer header, .legacy-crm .action-drawer footer {
+  border-color: var(--hy-glass-edge); background-color: var(--hy-glass-float-bg); background-image: var(--hy-glass-sheen);
+  -webkit-backdrop-filter: var(--hy-glass-float-filter); backdrop-filter: var(--hy-glass-float-filter); box-shadow: var(--hy-glass-highlight);
+}
+.legacy-crm .action-drawer-body { background: var(--hy-surface); }
+.legacy-crm .confirmation-backdrop { z-index: 1100; }
+.legacy-crm .confirm-dialog, .legacy-crm .import-dialog {
+  width: min(440px, calc(100vw - 32px)); background-color: var(--hy-glass-float-bg); background-image: var(--hy-glass-sheen); color: var(--hy-body);
+  border: 1px solid var(--hy-glass-edge); border-radius: var(--hy-radius-dialog); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-dialog);
+  -webkit-backdrop-filter: var(--hy-glass-float-filter); backdrop-filter: var(--hy-glass-float-filter);
+}
+.legacy-crm .confirm-dialog h2, .legacy-crm .import-dialog h2 { color: var(--hy-text); }
+.legacy-crm .confirm-dialog button.confirm-danger { color: white; background: var(--hy-danger); border-color: var(--hy-danger); }
+.legacy-crm .confirm-dialog button.confirm-danger:hover:not(:disabled) { color: white; background: var(--hy-danger-text); border-color: var(--hy-danger-text); }
+.legacy-crm .confirm-dialog > p, .legacy-crm .import-dialog p { color: var(--hy-secondary); }
+.legacy-crm .action-drawer .close { border-radius: var(--hy-radius-control); color: var(--hy-secondary); }
+.legacy-crm .action-drawer .close:hover { background: var(--hy-primary-soft); color: var(--hy-primary); }
+.legacy-crm .action-dialog-backdrop {
+  position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center;
+  padding: 16px; background: var(--hy-overlay); -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.legacy-crm .action-drawer.action-dialog {
+  position: relative; inset: auto; margin: 0; padding: 0;
+  /* These widths supersede the retained mobile drawer's !important fullscreen rule. */
+  width: min(720px, calc(100vw - 32px)) !important; max-width: calc(100vw - 32px) !important;
+  height: auto; max-height: calc(100dvh - 32px); min-height: 0;
+  display: flex; flex-direction: column; flex-shrink: 1;
+  border: 1px solid var(--hy-glass-edge); border-radius: var(--hy-radius-dialog); overflow: hidden;
+}
+.legacy-crm .action-drawer.action-dialog.action-dialog-wide { width: min(880px, calc(100vw - 32px)) !important; }
+.legacy-crm .action-dialog > header, .legacy-crm .action-dialog > footer { flex: 0 0 auto; }
+.legacy-crm .action-dialog > .action-drawer-body { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+.legacy-crm .ai-dialog-body { min-width: 0; color: var(--hy-body); font-size: var(--hy-font-body); line-height: var(--hy-line-body); }
+.legacy-crm .ai-dialog-body > svg { width: 32px; height: 32px; color: var(--hy-accent); }
+.legacy-crm .ai-dialog-body > p { color: var(--hy-secondary); font-size: var(--hy-font-body); line-height: var(--hy-line-body); }
+.legacy-crm .ai-dialog-body :is(.ai-question, .ai-lead-selector) { color: var(--hy-body); font-size: var(--hy-font-body); line-height: var(--hy-line-body); font-weight: 500; }
+.legacy-crm .ai-dialog-body .ai-question textarea { min-height: 112px; }
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-send,
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-legacy-ask {
+  position: static; display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; min-height: 44px; margin-top: 16px; padding: 10px 16px; border-radius: var(--hy-radius-control);
+}
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-send {
+  background: var(--hy-primary); color: #fff; border-color: var(--hy-primary); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-sm);
+}
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-send:hover:not(:disabled) { background: var(--hy-primary-hover); border-color: var(--hy-primary-hover); }
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-legacy-ask { background: var(--hy-surface); color: var(--hy-body); border-color: var(--hy-control-border); }
+.legacy-crm .action-drawer.action-dialog .ai-dialog-body :is(.ai-mode-tabs, .ai-quick-tasks) button.selected {
+  background: var(--hy-glass-selection); color: var(--hy-primary-active); border-color: var(--hy-selection-edge); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-sm);
+}
+.legacy-crm .ai-dialog-body .ai-send svg { width: 16px; height: 16px; }
+.legacy-crm .ai-dialog-body .ai-answer, .legacy-crm .ai-dialog-body .ai-transcript { background: var(--hy-surface); color: var(--hy-body); border-color: var(--hy-border); }
+.access-note { color: var(--hy-secondary); margin: 16px 0 24px; line-height: 1.8; }
+
+@media (max-width: 1279px) { .legacy-page { padding-inline: 24px; } }
+@media (max-width: 1100px) {
+  .legacy-crm .board { grid-template-columns: 1fr; overflow: visible; }
+  .legacy-crm .business-rail { min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .legacy-crm .analytics { grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0; }
+  .legacy-crm .network { min-width: 0; }
+}
+@media (max-width: 767px) {
+  .legacy-page { padding: 24px 16px 40px; }
+  .legacy-crm .topbar { align-items: flex-start; gap: 16px; margin-bottom: 20px; }
+  .legacy-crm .topbar h1, .legacy-crm .studio-page-heading h1 { font-size: 24px; }
+  .legacy-crm .top-actions { gap: 8px; flex-wrap: wrap; }
+  .legacy-crm .top-actions button { font-size: var(--hy-font-body); padding-inline: 12px; }
+  .legacy-crm .business-rail, .legacy-crm .analytics { display: grid; grid-template-columns: minmax(0, 1fr); min-width: 0; }
+  .legacy-crm .analytics article:last-child { grid-column: auto; }
+  .legacy-crm .network { height: 450px; min-width: 0; }
+  .legacy-crm .legend { max-width: 140px; right: 10px; }
+  .legacy-crm .selected-card { width: 180px; left: 12px; top: auto; bottom: 20px; }
+  .legacy-crm .studio-home { grid-template-columns: minmax(0, 1fr); }
+  .legacy-crm .studio-quick { position: static; }
+  .legacy-crm .studio-page-heading { flex-wrap: wrap; gap: 12px; }
+  .legacy-crm .studio-panel, .legacy-crm .studio-ledger { padding: 20px; }
+  .legacy-crm .table-scroll { max-width: 100%; overflow-x: auto; }
+  .legacy-crm .kanban { max-width: 100%; overflow-x: auto; }
+  .legacy-crm .action-drawer, .legacy-crm .ai-drawer { max-width: 100vw; width: 100vw; border: 0; border-radius: 0; height: 100dvh; }
+  .legacy-crm .action-drawer header, .legacy-crm .action-drawer-body { padding: 20px 16px; }
+  .legacy-crm .action-drawer footer { padding: 16px; padding-bottom: max(16px, env(safe-area-inset-bottom)); }
+  .legacy-crm .action-drawer .inline-form { display: flex; flex-direction: column; }
+  .legacy-crm .action-drawer .inline-form > * { width: 100%; }
+  .legacy-crm .lead-search-row { display: grid; gap: 12px; }
+  .legacy-crm .saved-views label { display: flex; flex-wrap: wrap; }
+  .legacy-crm .saved-views .view-actions > label { width: auto; }
+  .legacy-crm .studio-toolbar { flex-wrap: wrap; }
+  .legacy-crm .studio-toolbar .studio-search { flex-basis: 100%; }
+  .legacy-crm :where(button):not(.map-node), .legacy-crm .studio-page button, .legacy-crm .action-drawer .close { min-height: 44px; min-width: 44px; }
+  .legacy-crm .support-view :where(input:not([type=checkbox]), select, textarea),
+  .legacy-crm .studio-page :where(input:not([type=checkbox]), select, textarea),
+  .legacy-crm .action-drawer :where(input:not([type=checkbox]), select, textarea) { min-height: 44px; font-size: 16px; }
+}
+/* Body labels and table values use one responsive reading scale. */
+.legacy-crm .support-view button, .legacy-crm .top-actions button, .legacy-crm .view-actions button,
+.legacy-crm .studio-page button, .legacy-crm .action-drawer button, .legacy-crm .confirm-dialog button,
+.legacy-crm .action-drawer .stack-form label, .legacy-crm .studio-form label, .legacy-crm .inline-form label,
+.legacy-crm .stack-form label, .legacy-crm .support-view label, .legacy-crm .filter-field,
+.legacy-crm .studio-toolbar, .legacy-crm .record-link, .legacy-crm .task,
+.legacy-crm .table-scroll th, .legacy-crm .table-scroll td,
+.legacy-crm .studio-ledger .table-scroll th, .legacy-crm .studio-ledger .table-scroll td,
+.legacy-crm .metric-row span, .legacy-crm .metric-bars p, .legacy-crm .completion-copy,
+.legacy-crm .studio-panel > p, .legacy-crm .studio-report pre, .legacy-crm .collection-empty {
+  font-size: var(--hy-font-body); line-height: var(--hy-line-body);
+}
+.legacy-crm .rail-note, .legacy-crm .task small, .legacy-crm .studio-hint,
+.legacy-crm .studio-editor .studio-hint, .legacy-crm .studio-muted, .legacy-crm .muted,
+.legacy-crm .analytic-head > span, .legacy-crm .stats p, .legacy-crm .legend p,
+.legacy-crm .table-scroll td small, .legacy-crm .table-scroll td time {
+  font-size: var(--hy-font-meta); line-height: var(--hy-line-meta);
+}
+.legacy-crm .network .map-layers { align-items: center; gap: 4px 8px; }
+.legacy-crm .network .map-layers label { flex-direction: row; min-height: 32px; gap: 6px; font-size: 12px; line-height: 18px; }
+.legacy-crm .network .map-layers input[type=radio],
+.legacy-crm .support-view .network .map-layers input[type=radio] {
+  appearance: auto; -webkit-appearance: radio; width: 18px; height: 18px;
+  min-width: 18px; min-height: 0; flex: 0 0 18px; margin: 0; padding: 0;
+  border: initial; border-radius: 50%; background: initial; accent-color: var(--hy-primary);
+}
+@media (max-width: 767px) {
+  .legacy-crm .network .map-layers label { min-height: 44px; }
+  .legacy-crm .network .map-controls button { width: 44px; height: 44px; min-height: 44px; }
+}
+
+@media (forced-colors: active) {
+  .legacy-crm { color: CanvasText; }
+  .legacy-crm .studio-toolbar, .legacy-crm .studio-tabs, .legacy-crm .saved-views,
+  .legacy-crm .action-drawer, .legacy-crm .ai-drawer, .legacy-crm .confirm-dialog, .legacy-crm .import-dialog,
+  .legacy-crm .action-drawer header, .legacy-crm .action-drawer footer {
+    background: Canvas; color: CanvasText; border-color: ButtonBorder; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none;
+  }
+  .legacy-crm .primary, .legacy-crm .studio-page .primary, .legacy-crm .studio-editor .primary,
+  .legacy-crm .top-actions .ai-trigger, .legacy-crm .ai-send, .legacy-crm .support-view button[type=submit],
+  .legacy-crm .action-drawer button[type=submit], .legacy-crm .confirm-dialog .primary { color: ButtonText; background: Canvas; border: 1px solid ButtonText; box-shadow: none; }
+  .legacy-crm .studio-tabs button[aria-pressed=true], .legacy-crm .view-actions button[aria-pressed=true] { color: Highlight; background: Canvas; outline: 2px solid Highlight; outline-offset: -2px; }
+  .legacy-crm .drawer-backdrop, .legacy-crm .modal-backdrop, .legacy-crm .action-dialog-backdrop { background: rgb(0 0 0 / 55%); }
+  .legacy-crm .confirm-dialog button.confirm-danger { background: ButtonFace; color: ButtonText; border-color: ButtonText; }
+  .legacy-crm .action-drawer.action-dialog .ai-dialog-body button.ai-send { background: Canvas; color: ButtonText; border-color: ButtonText; box-shadow: none; }
+  .legacy-crm .action-drawer.action-dialog .ai-dialog-body :is(.ai-mode-tabs, .ai-quick-tasks) button.selected { background: Canvas; color: Highlight; border-color: Highlight; outline: 2px solid Highlight; outline-offset: -2px; box-shadow: none; }
+}

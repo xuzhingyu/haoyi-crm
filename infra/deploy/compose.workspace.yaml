@@ -1,0 +1,147 @@
+name: haoyi-workspace
+x-app: &app
+  mem_swappiness: 30
+  image: haoyi-workspace-api:20261106-intelligence-r2
+  build:
+    context: ../../services/lead-core
+    dockerfile: Dockerfile
+  env_file: /opt/haoyi-workspace/shared/workspace.env
+  restart: unless-stopped
+  networks: [workspace]
+  mem_limit: 224m
+  cpus: 0.5
+
+x-aihot: &aihot
+  mem_swappiness: 30
+  image: haoyi-workspace-aihot:20261106-intelligence
+  build:
+    context: ../..
+    dockerfile: infra/deploy/Dockerfile.aihot
+  env_file: /opt/haoyi-workspace/shared/aihot.env
+  restart: unless-stopped
+  networks: [workspace]
+  volumes: [aihot_data:/data]
+  mem_limit: 208m
+  cpus: 0.35
+
+services:
+  legacy-crm:
+    mem_swappiness: 30
+    image: haoyi-legacy-crm:20261105-integrated
+    build:
+      context: ../../services/legacy-crm
+      dockerfile: Dockerfile
+    container_name: haoyi-legacy-crm
+    env_file: /opt/haoyi-workspace/shared/legacy-crm.env
+    restart: unless-stopped
+    volumes: [/opt/affiliate-workbench/data:/app/data]
+    networks: [workspace]
+    mem_limit: 224m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/api/health',timeout=3)"]
+      interval: 20s
+      retries: 8
+  postgres:
+    mem_swappiness: 30
+    image: postgres:17-alpine
+    restart: unless-stopped
+    env_file: /opt/haoyi-workspace/shared/database.env
+    command: ["postgres", "-c", "shared_buffers=32MB", "-c", "max_connections=60", "-c", "work_mem=2MB"]
+    volumes:
+      - database:/var/lib/postgresql/data
+      - ./postgres-init.sh:/docker-entrypoint-initdb.d/10-haoyi.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      retries: 20
+    networks: [workspace]
+    mem_limit: 224m
+  redis:
+    mem_swappiness: 30
+    image: redis:7.4-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory", "24mb", "--maxmemory-policy", "noeviction"]
+    volumes: [redis_data:/data]
+    networks: [workspace]
+    mem_limit: 48m
+  migrate:
+    <<: *app
+    restart: "no"
+    command: ["python", "-m", "lead_core.intelligence.migrate"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  lead-core:
+    <<: *app
+    container_name: haoyi-lead-core
+    volumes:
+      - /opt/affiliate-workbench/data:/app/legacy-crm:ro
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health',timeout=3)"]
+      interval: 20s
+      retries: 8
+  scheduler:
+    <<: *app
+    command: ["celery", "-A", "lead_core.jobs.celery_app:celery_app", "beat", "--loglevel=WARNING", "--schedule=/tmp/celerybeat"]
+    mem_limit: 96m
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  worker:
+    <<: *app
+    command: ["celery", "-A", "lead_core.jobs.celery_app:celery_app", "worker", "--pool=solo", "--concurrency=1", "--loglevel=WARNING", "--without-gossip", "--without-mingle"]
+    mem_limit: 160m
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  keycloak:
+    mem_swappiness: 30
+    image: quay.io/keycloak/keycloak:26.7.3
+    container_name: haoyi-workspace-auth
+    command: ["start", "--http-enabled=true", "--proxy-headers=xforwarded", "--health-enabled=true", "--import-realm"]
+    env_file: /opt/haoyi-workspace/shared/keycloak.env
+    restart: unless-stopped
+    volumes: [/opt/haoyi-workspace/shared/haoyi-realm.json:/opt/keycloak/data/import/haoyi-realm.json:ro]
+    networks: [workspace]
+    depends_on:
+      postgres: {condition: service_healthy}
+    mem_limit: 640m
+    cpus: 0.75
+  aihot-setup:
+    <<: *aihot
+    restart: "no"
+    command: ["sh", "-c", "node scripts/migrate.ts && node scripts/seed.ts"]
+    depends_on:
+      postgres: {condition: service_healthy}
+  aihot-api:
+    <<: *aihot
+    command: ["node", "apps/api/src/main.ts"]
+    depends_on:
+      aihot-setup: {condition: service_completed_successfully}
+  aihot-worker:
+    <<: *aihot
+    command: ["node", "apps/worker/src/main.ts"]
+    stop_grace_period: 60s
+    depends_on:
+      aihot-setup: {condition: service_completed_successfully}
+  autoloop:
+    mem_swappiness: 30
+    image: haoyi-workspace-autoloop:20261106-intelligence
+    build:
+      context: ../..
+      dockerfile: infra/deploy/Dockerfile.autoloop
+    env_file: /opt/haoyi-workspace/shared/autoloop.env
+    restart: unless-stopped
+    volumes: [autoloop_data:/data]
+    networks: [workspace]
+    mem_limit: 160m
+    cpus: 0.25
+
+networks:
+  workspace:
+    name: haoyi-workspace-net
+volumes:
+  database: {}
+  redis_data: {}
+  aihot_data: {}
+  autoloop_data: {}

@@ -1,0 +1,249 @@
+name: haoyi-crm
+
+x-lead-core-env: &lead-core-env
+  LEAD_CORE_ENVIRONMENT: production
+  LEAD_CORE_AUTH_MODE: oidc
+  LEAD_CORE_DATABASE_URL: postgresql+psycopg://lead_core:${LEAD_CORE_DB_PASSWORD:?required}@postgres:5432/lead_core
+  LEAD_CORE_REDIS_URL: redis://redis:6379/0
+  LEAD_CORE_AUTO_CREATE_SCHEMA: "false"
+  LEAD_CORE_SENSITIVE_DATA_KEY: ${LEAD_CORE_SENSITIVE_DATA_KEY:?required}
+  LEAD_CORE_PERSON_FIELDS_ENABLED: ${LEAD_CORE_PERSON_FIELDS_ENABLED:-false}
+  LEAD_CORE_OIDC_ISSUER: https://${AUTH_DOMAIN:?required}/realms/haoyi
+  LEAD_CORE_OIDC_JWKS_URL: http://keycloak:8080/realms/haoyi/protocol/openid-connect/certs
+  LEAD_CORE_OIDC_AUDIENCE: lead-core
+  LEAD_CORE_TWENTY_SYNC_ENABLED: "true"
+  LEAD_CORE_TWENTY_BASE_URL: http://twenty-server:3000
+  LEAD_CORE_TWENTY_API_KEY: ${TWENTY_API_KEY:-}
+  LEAD_CORE_CORS_ORIGINS: '["https://${PORTAL_DOMAIN:?required}"]'
+  LEAD_CORE_SNAPSHOT_STORE_ENABLED: "true"
+  LEAD_CORE_SNAPSHOT_S3_ENDPOINT: http://minio:9000
+  LEAD_CORE_SNAPSHOT_S3_REGION: us-east-1
+  LEAD_CORE_SNAPSHOT_S3_BUCKET: source-snapshots
+  LEAD_CORE_SNAPSHOT_S3_ACCESS_KEY: ${MINIO_ROOT_USER:?required}
+  LEAD_CORE_SNAPSHOT_S3_SECRET_KEY: ${MINIO_ROOT_PASSWORD:?required}
+
+x-twenty-env: &twenty-env
+  NODE_PORT: 3000
+  PG_DATABASE_URL: postgres://twenty:${TWENTY_DB_PASSWORD:?required}@postgres:5432/twenty
+  SERVER_URL: https://${CRM_DOMAIN:?required}
+  REDIS_URL: redis://redis:6379/1
+  STORAGE_TYPE: s3
+  STORAGE_S3_REGION: us-east-1
+  STORAGE_S3_NAME: twenty
+  STORAGE_S3_ENDPOINT: http://minio:9000
+  AWS_ACCESS_KEY_ID: ${MINIO_ROOT_USER:?required}
+  AWS_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:?required}
+  APP_SECRET: ${TWENTY_APP_SECRET:?required}
+  ENCRYPTION_KEY: ${TWENTY_ENCRYPTION_KEY:?required}
+  FALLBACK_ENCRYPTION_KEY: ${TWENTY_FALLBACK_ENCRYPTION_KEY:?required}
+
+services:
+  edge:
+    image: caddy:2.10.2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      PORTAL_DOMAIN: ${PORTAL_DOMAIN:?required}
+      CRM_DOMAIN: ${CRM_DOMAIN:?required}
+      AUTH_DOMAIN: ${AUTH_DOMAIN:?required}
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      portal:
+        condition: service_started
+      lead-core:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+      twenty-server:
+        condition: service_healthy
+
+  portal:
+    build:
+      context: ../apps/franchise-portal
+      args:
+        VITE_API_BASE_URL: /api/v1
+        VITE_OIDC_AUTHORITY: https://${AUTH_DOMAIN:?required}/realms/haoyi
+        VITE_OIDC_CLIENT_ID: franchise-portal
+    restart: unless-stopped
+
+  lead-core-migrate:
+    build: ../services/lead-core
+    command: ["alembic", "upgrade", "head"]
+    environment: *lead-core-env
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: "no"
+
+  lead-core:
+    build: ../services/lead-core
+    restart: unless-stopped
+    environment: *lead-core-env
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    depends_on:
+      lead-core-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+
+  lead-worker:
+    build: ../services/lead-core
+    command: ["celery", "-A", "lead_core.jobs.celery_app:celery_app", "worker", "--loglevel=INFO"]
+    restart: unless-stopped
+    environment: *lead-core-env
+    depends_on:
+      lead-core-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+
+  lead-scheduler:
+    build: ../services/lead-core
+    command: ["celery", "-A", "lead_core.jobs.celery_app:celery_app", "beat", "--loglevel=INFO"]
+    restart: unless-stopped
+    environment: *lead-core-env
+    depends_on:
+      lead-core-migrate:
+        condition: service_completed_successfully
+      redis:
+        condition: service_healthy
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.7.3@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54
+    command: ["start", "--http-enabled=true", "--proxy-headers=xforwarded", "--health-enabled=true", "--import-realm"]
+    restart: unless-stopped
+    environment:
+      KC_DB: postgres
+      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
+      KC_DB_USERNAME: keycloak
+      KC_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?required}
+      KC_HOSTNAME: ${KEYCLOAK_HOSTNAME:?required}
+      KC_BOOTSTRAP_ADMIN_USERNAME: ${KEYCLOAK_ADMIN:?required}
+      KC_BOOTSTRAP_ADMIN_PASSWORD: ${KEYCLOAK_ADMIN_PASSWORD:?required}
+    volumes:
+      - ./keycloak/haoyi-realm.json:/opt/keycloak/data/import/haoyi-realm.json:ro
+    healthcheck:
+      test: ["CMD-SHELL", "exec 3<>/dev/tcp/127.0.0.1/9000; echo -e 'GET /health/ready HTTP/1.1\r\nhost: localhost\r\nConnection: close\r\n\r\n' >&3; grep '200 OK' <&3"]
+      interval: 15s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  twenty-server:
+    image: twentycrm/twenty:v2.26.0@sha256:3c5845fb485b57688bb90a202918038c2d4ce3b868c0dad8df3cf79e51c91dd9
+    restart: unless-stopped
+    environment: *twenty-env
+    volumes:
+      - twenty_local:/app/packages/twenty-server/.local-storage
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:3000/healthz"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      minio-init:
+        condition: service_completed_successfully
+
+  twenty-worker:
+    image: twentycrm/twenty:v2.26.0@sha256:3c5845fb485b57688bb90a202918038c2d4ce3b868c0dad8df3cf79e51c91dd9
+    command: ["yarn", "worker:prod"]
+    restart: unless-stopped
+    environment:
+      <<: *twenty-env
+      DISABLE_DB_MIGRATIONS: "true"
+      DISABLE_CRON_JOBS_REGISTRATION: "true"
+    volumes:
+      - twenty_local:/app/packages/twenty-server/.local-storage
+    depends_on:
+      twenty-server:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:16.8-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_SUPERUSER:?required}
+      POSTGRES_PASSWORD: ${POSTGRES_SUPERUSER_PASSWORD:?required}
+      LEAD_CORE_DB_PASSWORD: ${LEAD_CORE_DB_PASSWORD:?required}
+      KEYCLOAK_DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD:?required}
+      TWENTY_DB_PASSWORD: ${TWENTY_DB_PASSWORD:?required}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./postgres/00-create-databases.sh:/docker-entrypoint-initdb.d/00-create-databases.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_SUPERUSER} -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  redis:
+    image: redis:7.4.2-alpine
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  minio:
+    image: minio/minio:RELEASE.2025-02-07T23-21-09Z
+    command: ["server", "/data", "--console-address", ":9001"]
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?required}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?required}
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  minio-init:
+    image: minio/mc:RELEASE.2025-02-08T19-14-21Z
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?required}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?required}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - >-
+        mc alias set local http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}" &&
+        mc mb --ignore-existing local/twenty &&
+        mc mb --ignore-existing local/source-snapshots &&
+        mc anonymous set none local/twenty &&
+        mc anonymous set none local/source-snapshots
+    restart: "no"
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  twenty_local:
+  caddy_data:
+  caddy_config:

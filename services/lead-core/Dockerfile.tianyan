@@ -1,0 +1,25 @@
+ARG NODE_IMAGE=node:22-bookworm-slim
+ARG PYTHON_IMAGE=python:3.11-slim
+FROM ${NODE_IMAGE} AS tianyan
+RUN npm install --global tyc-cli@0.3.11
+
+FROM ${PYTHON_IMAGE}
+ARG PIP_INDEX_URL=https://pypi.org/simple
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 \
+    LEAD_CORE_COMPANY_INTELLIGENCE_TYC_CLI_ENTRY=/opt/tyc-cli/dist/index.js
+WORKDIR /app
+COPY --from=tianyan /usr/local/bin/node /usr/local/bin/node
+COPY --from=tianyan /usr/local/lib/node_modules/tyc-cli /opt/tyc-cli
+COPY pyproject.toml ./
+RUN pip install --index-url ${PIP_INDEX_URL} --upgrade pip && \
+    python -c "import tomllib; print('\n'.join(tomllib.load(open('pyproject.toml','rb'))['project']['dependencies']))" > /tmp/requirements.txt && \
+    pip install --index-url ${PIP_INDEX_URL} -r /tmp/requirements.txt hatchling
+COPY src ./src
+COPY alembic.ini ./
+COPY alembic ./alembic
+RUN pip install --no-deps --no-build-isolation . && \
+    useradd --create-home --uid 10001 leadcore && \
+    mkdir -p /home/leadcore/.tyc && chown -R leadcore:leadcore /app /home/leadcore/.tyc
+USER leadcore
+EXPOSE 8000
+CMD ["python", "-m", "lead_core"]

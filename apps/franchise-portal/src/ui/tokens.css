@@ -1,0 +1,110 @@
+/* Hallmark · genre: modern-minimal · scope: app · theme: Haoyi soft neumorphism (approved) */
+/* Shared production tokens; no preview pages, fixtures, or business state. */
+/* Hallmark · waive 26b · This tokens file is not a form control · Active control states are implemented by theme-light.css and motion.css; tokens only declare the shared palette and scale. */
+:root {
+  --hy-font-family: system-ui, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei UI', 'Noto Sans SC', sans-serif;
+  --hy-sidebar-bg: #e2ebf5;
+  --hy-field-bg: #f7f9fc;
+  --hy-field-inset: inset 0 1px 2px rgb(32 54 74 / 7%);
+  --hy-soft-raised: 6px 6px 16px #ccd8e1, -6px -6px 16px #fff;
+  --hy-button-shadow: 0 4px 8px rgb(36 98 232 / 16%), inset 0 1px 0 rgb(255 255 255 / 20%);
+  --hy-energy-soft: #e1edce;
+  --hy-energy-ink: #365c24;
+  --hy-deep: #153e58;
+  --hy-on-deep: #fff;
+  --hy-deep-muted: #c5dce9;
+  --hy-deep-line: #45657a;
+  --hy-control-height: 48px;
+  --hy-bg: #eaf0f4;
+  --hy-surface: #fff;
+  --hy-surface-subtle: #f0f5f8;
+  --hy-primary: #2462e8;
+  --hy-primary-hover: #1d54ce;
+  --hy-primary-active: #1e40af;
+  --hy-primary-soft: #e5edfb;
+  --hy-accent: #0b7480;
+  --hy-accent-soft: #edf7f6;
+  --hy-text: #20364a;
+  --hy-body: #334b60;
+  --hy-secondary: #4e6577;
+  --hy-muted: #4e6577;
+  --hy-border: #dce5ed;
+  --hy-control-border: #7f8fa5;
+  --hy-success: #15803d;
+  --hy-success-soft: #f0fdf4;
+  --hy-warning: #b45309;
+  --hy-warning-soft: #fffbeb;
+  --hy-danger: #dc2626;
+  --hy-danger-text: #b91c1c;
+  --hy-danger-soft: #fef2f2;
+  --hy-radius-control: 12px;
+  --hy-radius-panel: 20px;
+  --hy-radius-dialog: 20px;
+  --hy-font-body: 14px;
+  --hy-line-body: 22px;
+  --hy-font-meta: 12px;
+  --hy-line-meta: 18px;
+  --hy-shadow-sm: 0 2px 8px rgb(32 54 74 / 6%);
+  --hy-shadow-md: 0 4px 16px rgb(32 54 74 / 6%);
+  --hy-shadow-dialog: 0 16px 40px rgb(32 54 74 / 16%);
+  --hy-glass-bg: var(--hy-surface-subtle);
+  --hy-glass-float-bg: #fff;
+  --hy-glass-filter: none;
+  --hy-glass-float-filter: none;
+  --hy-glass-edge: var(--hy-border);
+  --hy-glass-highlight: inset 0 1px 0 rgb(255 255 255 / 70%);
+  --hy-glass-sheen: none;
+  --hy-glass-selection: linear-gradient(var(--hy-surface), var(--hy-surface));
+  --hy-selection-edge: #a8c1e8;
+  --hy-overlay: rgb(27 42 64 / 22%);
+  --hy-ambient: none;
+  --hy-duration-control: 180ms;
+  --hy-duration-hover: 180ms;
+  --hy-duration-page: 360ms;
+  --hy-duration-nav: 240ms;
+  --hy-duration-dialog-in: 320ms;
+  --hy-duration-dialog-out: 180ms;
+  --hy-duration-drawer-in: 360ms;
+  --hy-duration-drawer-out: 200ms;
+  --hy-duration-toast-in: 220ms;
+  --hy-duration-toast-out: 160ms;
+  --hy-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --hy-ease-in: cubic-bezier(.4, 0, 1, 1);
+  --hy-ease-control: cubic-bezier(.2, 0, 0, 1);
+}
+
+@media (max-width: 767px) {
+  :root { --hy-font-body: 16px; --hy-line-body: 24px; }
+}
+
+/* Opaque materials are the approved baseline; no backdrop-filter dependency. */
+html[data-hy-transparency='reduced'] {
+  --hy-glass-bg: var(--hy-surface-subtle); --hy-glass-float-bg: #fff;
+  --hy-glass-filter: none; --hy-glass-float-filter: none;
+  --hy-glass-sheen: none; --hy-ambient: none;
+}
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --hy-glass-bg: var(--hy-surface-subtle); --hy-glass-float-bg: #fff;
+    --hy-glass-filter: none; --hy-glass-float-filter: none;
+    --hy-glass-sheen: none; --hy-ambient: none;
+  }
+}
+@media (forced-colors: active) {
+  :root, html[data-hy-transparency='reduced'] {
+    --hy-bg: Canvas; --hy-surface: Canvas; --hy-surface-subtle: Canvas;
+    --hy-sidebar-bg: Canvas; --hy-field-bg: Canvas; --hy-field-inset: none; --hy-soft-raised: none; --hy-button-shadow: none;
+    --hy-energy-soft: Canvas; --hy-energy-ink: CanvasText; --hy-deep: Canvas; --hy-on-deep: CanvasText; --hy-deep-muted: CanvasText; --hy-deep-line: ButtonBorder;
+    --hy-text: CanvasText; --hy-body: CanvasText; --hy-secondary: CanvasText; --hy-muted: CanvasText;
+    --hy-primary: LinkText; --hy-primary-hover: LinkText; --hy-primary-active: LinkText;
+    --hy-primary-soft: Canvas; --hy-accent: LinkText; --hy-accent-soft: Canvas;
+    --hy-border: ButtonBorder; --hy-control-border: ButtonText;
+    --hy-success: CanvasText; --hy-warning: CanvasText; --hy-danger: CanvasText; --hy-danger-text: CanvasText;
+    --hy-success-soft: Canvas; --hy-warning-soft: Canvas; --hy-danger-soft: Canvas;
+    --hy-glass-bg: Canvas; --hy-glass-float-bg: Canvas;
+    --hy-glass-filter: none; --hy-glass-float-filter: none;
+    --hy-glass-edge: ButtonBorder; --hy-selection-edge: Highlight;
+    --hy-glass-highlight: none; --hy-glass-sheen: none; --hy-glass-selection: none;
+    --hy-shadow-sm: none; --hy-shadow-md: none; --hy-shadow-dialog: none; --hy-ambient: none;
+  }
+}

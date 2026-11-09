@@ -1,0 +1,29 @@
+# Optional overlay for compose.workspace.yaml. Authorize in the worker volume first.
+x-company-image: &company-image
+  image: haoyi-workspace-api:20261109-company-intelligence
+  build:
+    context: ../../services/lead-core
+    dockerfile: Dockerfile.tianyan
+  environment:
+    LEAD_CORE_COMPANY_INTELLIGENCE_TIANYAN_ENABLED: "false"
+
+services:
+  migrate:
+    <<: *company-image
+  lead-core:
+    <<: *company-image
+    environment:
+      LEAD_CORE_COMPANY_INTELLIGENCE_TIANYAN_ENABLED: "true"
+  scheduler:
+    <<: *company-image
+    environment:
+      LEAD_CORE_COMPANY_INTELLIGENCE_TIANYAN_ENABLED: "true"
+  worker:
+    <<: *company-image
+    environment:
+      LEAD_CORE_COMPANY_INTELLIGENCE_TIANYAN_ENABLED: "true"
+    volumes:
+      - tianyan_credentials:/home/leadcore/.tyc
+
+volumes:
+  tianyan_credentials: {}

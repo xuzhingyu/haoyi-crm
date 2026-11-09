@@ -1,0 +1,8 @@
+FROM node:24-trixie-slim
+WORKDIR /app
+COPY vendor/agent-autoloop/ ./
+COPY infra/deploy/autoloop-bootstrap.mjs infra/deploy/haoyi-runner.mjs ./
+ENV AGENT_AUTOLOOP_HOME=/data NODE_OPTIONS=--max-old-space-size=96
+RUN mkdir -p /data /workspace && chown -R node:node /app /data /workspace
+USER node
+CMD ["node", "autoloop-bootstrap.mjs"]

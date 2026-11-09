@@ -1,0 +1,173 @@
+/* Preview-only motion. Resting styles remain fully readable without animations. */
+.hy-spec {
+  --hy-motion-enter: 320ms;
+  --hy-motion-chart: 480ms;
+  --hy-motion-ease-out: cubic-bezier(.16, 1, .3, 1);
+}
+
+@keyframes hy-motion-rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hy-motion-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes hy-motion-value {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hy-motion-bar {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes hy-motion-dialog {
+  from { opacity: 0; transform: translateY(12px) scale(.985); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hy-motion-drawer {
+  from { opacity: 0; transform: translateX(24px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes hy-motion-choice {
+  from { opacity: .6; transform: scale(.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  /* Animate page sections instead of a parent that would move fixed descendants. */
+  .hy-spec .hy-main > .hy-page-stack > .hy-page-heading,
+  .hy-spec .hy-main > .hy-catalog > .hy-catalog-heading {
+    animation: hy-motion-rise var(--hy-duration-standard) var(--hy-motion-ease-out) backwards;
+  }
+  .hy-spec .hy-main > .hy-page-stack > :not(.hy-page-heading):not(.hy-overview-bento):not(.hy-overview-charts),
+  .hy-spec .hy-overview-bento > :not(.hy-overview-charts),
+  .hy-spec .hy-overview-charts > *,
+  .hy-spec .hy-catalog-columns > * {
+    animation: hy-motion-rise var(--hy-motion-enter) var(--hy-motion-ease-out) var(--hy-enter-delay, 0ms) backwards;
+  }
+  .hy-spec .hy-overview-bento > :nth-child(2),
+  .hy-spec .hy-catalog-columns > :nth-child(2) { --hy-enter-delay: 48ms; }
+  .hy-spec .hy-overview-bento > :nth-child(3),
+  .hy-spec .hy-catalog-columns > :nth-child(3) { --hy-enter-delay: 96ms; }
+  .hy-spec .hy-overview-bento > :nth-child(4),
+  .hy-spec .hy-catalog-columns > :nth-child(4) { --hy-enter-delay: 144ms; }
+  .hy-spec .hy-overview-charts > :first-child { --hy-enter-delay: 96ms; }
+  .hy-spec .hy-overview-charts > :nth-child(2) { --hy-enter-delay: 144ms; }
+
+  /* Values stay exact throughout: reveal their text, never count through fake data. */
+  .hy-spec .hy-metric__value,
+  .hy-spec .hy-overview-amount,
+  .hy-spec .hy-page-priority-number,
+  .hy-spec .hy-page-task-stats strong,
+  .hy-spec .hy-page-contract-total strong {
+    animation: hy-motion-value var(--hy-motion-enter) var(--hy-motion-ease-out) 64ms backwards;
+  }
+  .hy-spec .hy-overview-metrics > :nth-child(2) .hy-metric__value,
+  .hy-spec .hy-page-metrics > :nth-child(2) .hy-metric__value { animation-delay: 96ms; }
+  .hy-spec .hy-overview-metrics > :nth-child(3) .hy-metric__value,
+  .hy-spec .hy-page-metrics > :nth-child(3) .hy-metric__value { animation-delay: 128ms; }
+  .hy-spec .hy-page-metrics > :nth-child(4) .hy-metric__value { animation-delay: 160ms; }
+
+  .hy-spec .hy-bar__fill {
+    transform-box: fill-box;
+    transform-origin: left center;
+    animation: hy-motion-bar var(--hy-motion-chart) var(--hy-motion-ease-out) var(--hy-bar-delay, 0ms) backwards;
+  }
+  .hy-spec .hy-bar:nth-child(2) { --hy-bar-delay: 32ms; }
+  .hy-spec .hy-bar:nth-child(3) { --hy-bar-delay: 64ms; }
+  .hy-spec .hy-bar:nth-child(4) { --hy-bar-delay: 96ms; }
+  .hy-spec .hy-bar:nth-child(n+5) { --hy-bar-delay: 128ms; }
+
+  /* Only newly mounted records enter; sorting existing rows never replays a wipe. */
+  .hy-spec .hy-data-table tbody > tr,
+  .hy-spec .hy-table-mobile > article,
+  .hy-spec .hy-page-task-list > li {
+    animation: hy-motion-fade 240ms var(--hy-ease) var(--hy-row-delay, 0ms) backwards;
+  }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(2) { --hy-row-delay: 24ms; }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(3) { --hy-row-delay: 48ms; }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(4) { --hy-row-delay: 72ms; }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(5) { --hy-row-delay: 96ms; }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(6) { --hy-row-delay: 120ms; }
+  .hy-spec :is(.hy-data-table tbody, .hy-table-mobile, .hy-page-task-list) > :nth-child(n+7) { --hy-row-delay: 144ms; }
+
+  .hy-spec .hy-page-extra-filters,
+  .hy-spec .hy-page-filterchips,
+  .hy-spec .hy-page-batch,
+  .hy-spec .hy-page-alert,
+  .hy-spec .hy-empty,
+  .hy-spec .hy-toast,
+  .hy-spec .hy-chart-table,
+  .hy-spec .hy-select-listbox,
+  .hy-spec.hy-action-menu,
+  .hy-spec .hy-page-scenarios[open] > div {
+    animation: hy-motion-rise var(--hy-duration-standard) var(--hy-motion-ease-out) backwards;
+  }
+  .hy-spec .hy-page-filterchips > button {
+    animation: hy-motion-choice var(--hy-duration-standard) var(--hy-motion-ease-out) backwards;
+  }
+  .hy-spec .hy-page-citations[open] > div {
+    animation: hy-motion-rise var(--hy-duration-standard) var(--hy-motion-ease-out) backwards;
+  }
+  .hy-spec .hy-nav-active > span:first-child,
+  .hy-spec .hy-choice__input:checked + .hy-choice__box > svg {
+    animation: hy-motion-choice var(--hy-duration-standard) var(--hy-motion-ease-out) backwards;
+  }
+
+  /* Move the button contents, not its hit area or surrounding layout. */
+  .hy-spec .hy-button-content,
+  .hy-spec .hy-page-action-list > button > svg,
+  .hy-spec .hy-overview-insight > svg:last-child,
+  .hy-spec .hy-page-task-list > li > .hy-button svg {
+    transition: transform var(--hy-duration-fast) var(--hy-ease);
+  }
+  .hy-spec .hy-button:not(:disabled):active .hy-button-content { transform: translateY(1px) scale(.98); }
+  .hy-spec .hy-page-task-complete:active > span { transform: scale(.9); }
+  .hy-spec .hy-page-task-complete > span { transition: transform var(--hy-duration-fast) var(--hy-ease); }
+  .hy-spec .hy-data-table tbody > tr,
+  .hy-spec .hy-table-mobile > article,
+  .hy-spec .hy-page-task-list > li,
+  .hy-spec .hy-page-action-list > button {
+    transition: background-color var(--hy-duration-fast) var(--hy-ease);
+  }
+
+  .hy-spec.hy-dialog[open] {
+    animation: hy-motion-dialog var(--hy-duration-dialog) var(--hy-motion-ease-out) backwards;
+  }
+  .hy-spec.hy-dialog--drawer[open] { animation-name: hy-motion-drawer; }
+  .hy-spec.hy-dialog[open]::backdrop {
+    animation: hy-motion-fade var(--hy-duration-standard) var(--hy-ease) backwards;
+  }
+
+  /* Keep the original animation/timeline when focus moves. Cancelling animation here
+     would create a new entrance every time focus leaves the card or row. Override
+     only its visible result so keyboard focus is readable during the initial reveal. */
+  .hy-spec .hy-main > .hy-page-stack > :focus-within,
+  .hy-spec .hy-overview-bento > :focus-within,
+  .hy-spec .hy-overview-charts > :focus-within,
+  .hy-spec .hy-catalog-columns > :focus-within,
+  .hy-spec .hy-data-table tbody > tr:focus-within,
+  .hy-spec .hy-table-mobile > article:focus-within,
+  .hy-spec .hy-page-task-list > li:focus-within {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) and (hover: hover) and (pointer: fine) {
+  .hy-spec .hy-button--primary:not(:disabled):hover:not(:active) .hy-button-content { transform: translateY(-1px); }
+  .hy-spec .hy-page-action-list > button:hover > svg,
+  .hy-spec .hy-overview-insight:hover > svg:last-child { transform: translateX(3px); }
+  .hy-spec .hy-page-task-list > li > .hy-button:hover svg { transform: translate(2px, -2px); }
+}
+
+/* No delayed or hidden states survive either accessibility mode. */
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  .hy-spec *, .hy-spec *::before, .hy-spec *::after,
+  .hy-spec.hy-dialog, .hy-spec.hy-dialog::backdrop {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,17 @@
+{$PORTAL_DOMAIN} {
+  encode zstd gzip
+  handle /api/* {
+    reverse_proxy lead-core:8000
+  }
+  reverse_proxy portal:80
+}
+
+{$CRM_DOMAIN} {
+  encode zstd gzip
+  reverse_proxy twenty-server:3000
+}
+
+{$AUTH_DOMAIN} {
+  encode zstd gzip
+  reverse_proxy keycloak:8080
+}

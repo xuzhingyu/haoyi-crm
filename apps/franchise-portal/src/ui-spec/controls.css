@@ -1,0 +1,98 @@
+.hy-spec .hy-choice { position: relative; display: inline-flex; align-items: center; justify-content: flex-start; gap: var(--hy-space-2); min-width: var(--hy-control-sm); min-height: var(--hy-control-sm); margin: 0; cursor: pointer; vertical-align: middle; }
+.hy-spec .hy-choice:not(:has(.hy-choice__label)) { justify-content: center; }
+.hy-spec .hy-choice > .hy-choice__input, .hy-spec .hy-switch > .hy-switch__input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; z-index: 1; }
+.hy-spec .hy-choice__box { width: var(--hy-checkbox-size); height: var(--hy-checkbox-size); display: grid; place-items: center; flex: none; border: var(--hy-border-width) solid var(--hy-control-border); border-radius: var(--hy-radius-check); background: var(--hy-surface); color: var(--hy-on-primary); transition: background var(--hy-duration-fast), border-color var(--hy-duration-fast), box-shadow var(--hy-duration-fast); box-shadow: var(--hy-control-highlight); }
+.hy-spec .hy-choice__box > svg { width: 14px; height: 14px; stroke-width: 2; opacity: 0; }
+.hy-spec .hy-choice__label { font-size: var(--hy-font-base); line-height: var(--hy-line-height); color: var(--hy-body); }
+.hy-spec .hy-choice:hover > .hy-choice__input:not(:disabled):not(:checked):not([type=checkbox]:indeterminate) + .hy-choice__box { border-color: var(--hy-primary); background: var(--hy-primary-soft); }
+.hy-spec .hy-choice:hover > .hy-choice__input:checked:not(:disabled) + .hy-choice__box, .hy-spec .hy-choice:hover > .hy-choice__input[type=checkbox]:indeterminate:not(:disabled) + .hy-choice__box { border-color: var(--hy-primary-hover); background: var(--hy-primary-hover); }
+.hy-spec .hy-choice > .hy-choice__input:checked + .hy-choice__box, .hy-spec .hy-choice > .hy-choice__input[type=checkbox]:indeterminate + .hy-choice__box { background: var(--hy-primary); border-color: var(--hy-primary); box-shadow: var(--hy-control-selected-highlight); }
+.hy-spec .hy-choice > .hy-choice__input:checked + .hy-choice__box > svg, .hy-spec .hy-choice > .hy-choice__input[type=checkbox]:indeterminate + .hy-choice__box > svg { opacity: 1; }
+.hy-spec .hy-choice:active > .hy-choice__input:not(:disabled) + .hy-choice__box { border-color: var(--hy-primary-active); box-shadow: var(--hy-control-pressed-shadow); }
+.hy-spec .hy-choice > .hy-choice__input:focus-visible + .hy-choice__box, .hy-spec .hy-switch > .hy-switch__input:focus-visible + .hy-switch__track { outline: var(--hy-focus-width) solid var(--hy-focus); outline-offset: var(--hy-focus-offset); }
+.hy-spec .hy-choice > .hy-choice__input[aria-invalid=true] + .hy-choice__box { border-color: var(--hy-danger); }
+.hy-spec .hy-choice--disabled { cursor: not-allowed; }
+.hy-spec .hy-choice--disabled > .hy-choice__label { color: var(--hy-disabled-text); }
+.hy-spec .hy-choice > .hy-choice__input:disabled + .hy-choice__box { color: var(--hy-disabled-text); border-color: var(--hy-control-border); background: var(--hy-disabled-bg); box-shadow: none; }
+.hy-spec .hy-radio-group { min-width: 0; margin: 0; padding: 0; border: 0; }
+.hy-spec .hy-radio-group > legend { padding: 0; margin-bottom: var(--hy-space-2); color: var(--hy-body); font-size: var(--hy-font-base); font-weight: var(--hy-weight-medium); }
+.hy-spec .hy-radio-group > div { display: flex; align-items: center; flex-wrap: wrap; gap: var(--hy-space-4); }
+.hy-spec .hy-choice--radio > .hy-choice__box { border-radius: 50%; }
+.hy-spec .hy-choice--radio > .hy-choice__box > i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; opacity: 0; }
+.hy-spec .hy-choice--radio > .hy-choice__input:checked + .hy-choice__box > i { opacity: 1; }
+.hy-spec .hy-radio-group[aria-invalid=true] .hy-choice__box { border-color: var(--hy-danger); }
+.hy-spec .hy-radio-group[aria-invalid=true] .hy-choice:hover > .hy-choice__input:not(:disabled):not(:checked) + .hy-choice__box { border-color: var(--hy-danger); background: var(--hy-surface); }
+.hy-spec .hy-choice:hover > .hy-choice__input[aria-invalid=true]:not(:disabled):not(:checked):not([type=checkbox]:indeterminate) + .hy-choice__box { border-color: var(--hy-danger); background: var(--hy-surface); }
+.hy-spec .hy-switch { position: relative; display: inline-flex; align-items: center; gap: var(--hy-space-3); min-height: var(--hy-control-sm); color: var(--hy-body); font-size: var(--hy-font-base); cursor: pointer; }
+.hy-spec .hy-switch__track { position: relative; width: 40px; height: 24px; flex: none; border: var(--hy-border-width) solid var(--hy-control-border); border-radius: var(--hy-radius-pill); background: var(--hy-neutral-bg); transition: background var(--hy-duration-fast), border-color var(--hy-duration-fast); }
+.hy-spec .hy-switch__track > i { display: block; position: absolute; top: 2px; left: 2px; width: 18px; height: 18px; background: var(--hy-on-primary); border-radius: 50%; box-shadow: var(--hy-switch-shadow); transition: transform var(--hy-duration-standard) var(--hy-ease); }
+.hy-spec .hy-switch > .hy-switch__input:checked + .hy-switch__track { background: var(--hy-primary); border-color: var(--hy-primary); }
+.hy-spec .hy-switch > .hy-switch__input:checked + .hy-switch__track > i { transform: translateX(16px); }
+.hy-spec .hy-switch:hover > .hy-switch__input:not(:disabled) + .hy-switch__track { border-color: var(--hy-primary); }
+.hy-spec .hy-switch--disabled { cursor: not-allowed; color: var(--hy-disabled-text); }
+.hy-spec .hy-switch > .hy-switch__input:disabled + .hy-switch__track { background: var(--hy-disabled-bg); border-color: var(--hy-control-border); }
+.hy-spec .hy-switch > .hy-switch__input:disabled + .hy-switch__track > i { background: var(--hy-disabled-text); }
+.hy-spec .hy-switch > .hy-switch__input[aria-invalid=true] + .hy-switch__track { border-color: var(--hy-danger); }
+.hy-spec .hy-select, .hy-spec .hy-select-native { display: inline-block; position: relative; min-width: 0; width: 100%; vertical-align: middle; }
+.hy-spec .hy-select-trigger, .hy-spec .hy-select-native > select { width: 100%; min-width: 0; height: var(--hy-control-md); display: flex; align-items: center; justify-content: space-between; gap: var(--hy-space-3); padding: 0 var(--hy-space-3); border: var(--hy-border-width) solid var(--hy-control-border); border-radius: var(--hy-radius-md); background: var(--hy-surface); color: var(--hy-text); font-family: inherit; font-size: var(--hy-font-base); line-height: var(--hy-line-height); text-align: left; }
+.hy-spec .hy-select-trigger > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.hy-spec .hy-select-trigger > svg, .hy-spec .hy-select-native > svg { width: var(--hy-icon-sm); height: var(--hy-icon-sm); flex: none; color: var(--hy-secondary); transition: transform var(--hy-duration-fast); }
+.hy-spec .hy-select-trigger:hover:not(:disabled) { border-color: var(--hy-primary); }
+.hy-spec .hy-select-trigger[aria-expanded=true] { border-color: var(--hy-primary); }
+.hy-spec .hy-select-trigger[aria-expanded=true] > svg { transform: rotate(180deg); }
+.hy-spec .hy-select-trigger[aria-invalid=true], .hy-spec .hy-select-native > select[aria-invalid=true] { border-color: var(--hy-danger); }
+.hy-spec .hy-select-trigger:disabled, .hy-spec .hy-select-native > select:disabled { cursor: not-allowed; background: var(--hy-disabled-bg); color: var(--hy-disabled-text); }
+.hy-spec .hy-select-native > select { appearance: none; padding-right: var(--hy-space-10); }
+.hy-spec .hy-select-native > svg { position: absolute; right: var(--hy-space-3); top: 50%; transform: translateY(-50%); pointer-events: none; }
+.hy-spec .hy-select > .hy-select-form-proxy { position: absolute; width: 1px; height: 1px; left: 0; top: 0; opacity: 0; padding: 0; border: 0; pointer-events: none; }
+.hy-spec.hy-select-portal { z-index: var(--hy-z-dropdown); display: flex; min-height: 0; pointer-events: auto; }
+.hy-spec .hy-select-listbox { width: 100%; max-height: inherit; overflow: auto; overscroll-behavior: contain; padding: var(--hy-space-1); border: var(--hy-border-width) solid var(--hy-glass-edge); border-radius: var(--hy-radius-lg); background: var(--hy-glass-float-bg); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-dialog); }
+.hy-spec .hy-select-option { min-height: 40px; display: flex; align-items: center; justify-content: space-between; gap: var(--hy-space-3); padding: var(--hy-space-2) var(--hy-space-3); border-radius: var(--hy-radius-md); color: var(--hy-body); cursor: pointer; font-size: var(--hy-font-base); line-height: var(--hy-line-height); }
+.hy-spec .hy-select-option > span { overflow-wrap: anywhere; }
+.hy-spec .hy-select-option > svg { width: var(--hy-icon-sm); height: var(--hy-icon-sm); flex: none; }
+.hy-spec .hy-select-option[aria-selected=true] { color: var(--hy-primary); font-weight: var(--hy-weight-semibold); }
+.hy-spec .hy-select-option[data-active=true] { background: var(--hy-selected); }
+.hy-spec .hy-select-option[aria-disabled=true] { color: var(--hy-disabled-text); cursor: not-allowed; }
+.hy-spec .hy-segmented { position: relative; display: inline-flex; align-items: stretch; gap: var(--hy-space-1); max-width: 100%; padding: var(--hy-space-1); border: var(--hy-border-width) solid var(--hy-border); border-radius: var(--hy-radius-lg); background: var(--hy-surface-subtle); isolation: isolate; }
+.hy-spec .hy-segmented__indicator { position: absolute; left: var(--hy-space-1); top: var(--hy-space-1); bottom: var(--hy-space-1); width: calc((100% - var(--hy-space-2) - (var(--hy-segment-count) - 1) * var(--hy-space-1)) / var(--hy-segment-count)); transform: translateX(calc(var(--hy-segment-index) * (100% + var(--hy-space-1)))); border: var(--hy-border-width) solid var(--hy-liquid-edge); border-radius: var(--hy-radius-md); background: var(--hy-liquid-bg); box-shadow: var(--hy-liquid-shadow); pointer-events: none; transition: transform var(--hy-duration-standard) var(--hy-ease); }
+.hy-spec .hy-segmented__option { position: relative; display: inline-flex; flex: 1 1 0; min-width: 0; margin: 0; cursor: pointer; }
+.hy-spec .hy-segmented__option > input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; z-index: 1; cursor: inherit; }
+.hy-spec .hy-segmented__option > span { display: flex; flex: 1; align-items: center; justify-content: center; min-height: var(--hy-control-sm); padding: var(--hy-space-1) var(--hy-space-3); border: var(--hy-border-width) solid transparent; border-radius: var(--hy-radius-md); color: var(--hy-secondary); font-size: var(--hy-font-base); white-space: nowrap; }
+.hy-spec .hy-segmented__option > input:checked + span { color: var(--hy-primary); font-weight: var(--hy-weight-semibold); }
+.hy-spec .hy-segmented__option > input:focus-visible + span { outline: var(--hy-focus-width) solid var(--hy-focus); outline-offset: var(--hy-focus-offset); }
+.hy-spec .hy-segmented__option:hover > input:not(:disabled) + span { color: var(--hy-primary); }
+.hy-spec .hy-segmented__option > input:disabled + span { color: var(--hy-disabled-text); cursor: not-allowed; }
+@media (max-width: 767px), (pointer: coarse) {
+  .hy-spec .hy-choice, .hy-spec .hy-switch { min-height: var(--hy-touch-target); }
+  .hy-spec .hy-choice { min-width: var(--hy-touch-target); }
+  .hy-spec .hy-choice__box { width: var(--hy-icon-size); height: var(--hy-icon-size); }
+  .hy-spec .hy-switch__track { width: 44px; height: 28px; }
+  .hy-spec .hy-switch__track > i { width: 22px; height: 22px; }
+  .hy-spec .hy-select-trigger, .hy-spec .hy-select-native > select { height: var(--hy-touch-target); font-size: var(--hy-font-lg); }
+  .hy-spec .hy-segmented__option > span { min-height: var(--hy-touch-target); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hy-spec .hy-choice__box, .hy-spec .hy-switch__track, .hy-spec .hy-switch__track > i, .hy-spec .hy-select-trigger > svg, .hy-spec .hy-segmented__indicator { transition: none; }
+}
+@media (forced-colors: active) {
+  /* Forced colors intentionally outrank every normal hover/error/pressed combination. */
+  .hy-spec .hy-choice__box, .hy-spec .hy-switch__track, .hy-spec .hy-select-trigger, .hy-spec .hy-select-listbox, .hy-spec .hy-select-native > select, .hy-spec .hy-segmented {
+    border-color: ButtonText !important; background: Canvas !important; color: CanvasText !important; forced-color-adjust: none; box-shadow: none !important;
+  }
+  .hy-spec .hy-choice > .hy-choice__input:checked + .hy-choice__box, .hy-spec .hy-choice > .hy-choice__input[type=checkbox]:indeterminate + .hy-choice__box, .hy-spec .hy-switch > .hy-switch__input:checked + .hy-switch__track {
+    background: Highlight !important; border-color: Highlight !important; color: HighlightText !important;
+  }
+  .hy-spec .hy-choice > .hy-choice__input[aria-invalid=true] + .hy-choice__box, .hy-spec .hy-radio-group[aria-invalid=true] .hy-choice__box, .hy-spec .hy-switch > .hy-switch__input[aria-invalid=true] + .hy-switch__track, .hy-spec .hy-select-trigger[aria-invalid=true], .hy-spec .hy-select-native > select[aria-invalid=true] { border-color: CanvasText !important; border-style: dashed; }
+  .hy-spec .hy-choice > .hy-choice__input:disabled + .hy-choice__box, .hy-spec .hy-switch > .hy-switch__input:disabled + .hy-switch__track, .hy-spec .hy-select-trigger:disabled, .hy-spec .hy-select-native > select:disabled {
+    border-color: GrayText !important; background: Canvas !important; color: GrayText !important;
+  }
+  .hy-spec .hy-choice--disabled > .hy-choice__label, .hy-spec .hy-switch--disabled { color: GrayText !important; }
+  .hy-spec .hy-switch__track > i { background: ButtonText !important; box-shadow: none !important; }
+  .hy-spec .hy-switch__input:checked + .hy-switch__track > i { background: HighlightText !important; }
+  .hy-spec .hy-switch__input:disabled + .hy-switch__track > i { background: GrayText !important; }
+  .hy-spec .hy-select-option, .hy-spec .hy-segmented__option > span { color: CanvasText !important; }
+  .hy-spec .hy-select-option[data-active=true] { background: Highlight !important; color: HighlightText !important; }
+  .hy-spec .hy-select-option[aria-disabled=true], .hy-spec .hy-segmented__option > input:disabled + span { color: GrayText !important; }
+  .hy-spec .hy-segmented__indicator { background: Canvas !important; border-color: Highlight !important; box-shadow: none !important; }
+  .hy-spec .hy-choice__input:focus-visible + .hy-choice__box, .hy-spec .hy-switch__input:focus-visible + .hy-switch__track, .hy-spec .hy-segmented__option > input:focus-visible + span { outline-color: Highlight !important; }
+}

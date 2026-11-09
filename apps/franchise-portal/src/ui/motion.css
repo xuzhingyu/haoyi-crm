@@ -1,0 +1,146 @@
+/* Hallmark · genre: workspace interaction · scope: app · theme: Haoyi soft surfaces */
+/* Motion is opt-in; ordinary renders never replay a page entrance. */
+/* Hallmark · waive 26b · Animation-only sheet with no standalone controls; theme-light.css owns active states · Keeping pressed-state colors with component surfaces avoids duplicate overrides in the motion layer. */
+@keyframes hy-page-enter {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes hy-dialog-enter {
+  from { opacity: 0; transform: translateY(16px) scale(.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes hy-dialog-exit {
+  from { opacity: 1; transform: translateY(0) scale(1); }
+  to { opacity: 0; transform: translateY(8px) scale(.98); }
+}
+@keyframes hy-drawer-enter {
+  from { opacity: 0; translate: 32px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes hy-drawer-exit {
+  from { opacity: 1; translate: 0 0; }
+  to { opacity: 0; translate: 32px 0; }
+}
+@keyframes hy-sidebar-enter {
+  from { opacity: 0; translate: -32px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+@keyframes hy-sidebar-exit {
+  from { opacity: 1; translate: 0 0; }
+  to { opacity: 0; translate: -32px 0; }
+}
+@keyframes hy-overlay-enter { from { opacity: 0; } to { opacity: 1; } }
+@keyframes hy-overlay-exit { from { opacity: 1; } to { opacity: 0; } }
+@keyframes hy-toast-enter {
+  from { opacity: 0; translate: 0 12px; scale: .98; }
+  to { opacity: 1; translate: 0 0; scale: 1; }
+}
+@keyframes hy-toast-exit {
+  from { opacity: 1; translate: 0 0; }
+  to { opacity: 0; translate: 0 8px; }
+}
+@keyframes hy-nav-select { from { transform: translate(var(--hy-nav-from-x, 0px), var(--hy-nav-from-y, 0px)); } to { transform: translate(0, 0); } }
+@keyframes hy-chart-enter { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+/* The requested jelly response belongs exclusively to the decorative button face. */
+@keyframes hy-button-release {
+  0% { transform: scale(.965, .94); }
+  45% { transform: scale(1.018, 1.035); }
+  72% { transform: scale(.998, .994); }
+  100% { transform: scale(1); }
+}
+@keyframes hy-feedback-enter { from { opacity: .35; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes hy-toast-status { 0% { opacity: .35; transform: scale(.72); } 65% { opacity: 1; transform: scale(1.08); } 100% { opacity: 1; transform: scale(1); } }
+@keyframes hy-popup-enter { from { opacity: 0; transform: translateY(-4px) scale(.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes hy-submenu-enter { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* A fixed hit area contains a separate decorative surface. Text remains stable. */
+.hy-card-interactive {
+  position: relative;
+  isolation: isolate;
+}
+.hy-card-interactive:not(:has(> .hy-card-visual))::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  background: transparent;
+}
+.hy-card-visual { width: 100%; min-width: 0; }
+.hy-glow-card { position: relative; isolation: isolate; }
+.hy-glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-top-color: var(--hy-selection-edge);
+  border-left-color: var(--hy-glass-edge);
+  border-radius: inherit;
+  pointer-events: none;
+  background: var(--hy-glass-sheen) top left / 100% 3px no-repeat;
+  translate: var(--hy-pointer-x, 0px) var(--hy-pointer-y, 0px);
+}
+
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  .nav-submenu:not([hidden]) { animation: hy-submenu-enter 180ms var(--hy-ease-out); }
+  .hy-page-enter { animation: hy-page-enter var(--hy-duration-page) var(--hy-ease-out) min(var(--hy-enter-delay, 0ms), 200ms) backwards; }
+  .hy-page-enter:focus-within { opacity: 1 !important; transform: none !important; }
+  .hy-chart-enter { transform-origin: left center; animation: hy-chart-enter 480ms var(--hy-ease-out) backwards; }
+  .hy-item-enter { animation: hy-overlay-enter 180ms var(--hy-ease-out) backwards; }
+  .hy-feedback-enter { animation: hy-feedback-enter 240ms var(--hy-ease-out) backwards; }
+  :where(.button:not(.quiet), .legacy-crm button.primary, .legacy-crm .studio-tabs button)::before { transform-origin: center; transition: transform 110ms var(--hy-ease-out), background-color var(--hy-duration-control) var(--hy-ease-control), border-color var(--hy-duration-control) var(--hy-ease-control), box-shadow var(--hy-duration-control) var(--hy-ease-control); }
+  :where(.button:not(.quiet), .legacy-crm button.primary, .legacy-crm .studio-tabs button)[data-hy-press='down']::before { transform: scale(.965, .94); }
+  :where(.button:not(.quiet), .legacy-crm button.primary, .legacy-crm .studio-tabs button)[data-hy-press='release']::before { animation: hy-button-release 460ms var(--hy-ease-out); }
+  :where(.button:not(.quiet), .legacy-crm button.primary, .legacy-crm .studio-tabs button):is(:disabled, [aria-disabled='true'], [aria-busy='true'])::before { animation: none; transition: none; transform: none; }
+  .hy-card-interactive::before, .hy-card-interactive > .hy-card-visual {
+    transition: transform var(--hy-duration-hover) var(--hy-ease-out), box-shadow var(--hy-duration-hover) var(--hy-ease-out), border-color var(--hy-duration-hover) var(--hy-ease-control), background-color var(--hy-duration-hover) var(--hy-ease-control);
+  }
+  .hy-glow-card::after { transition: translate var(--hy-duration-hover) var(--hy-ease-out), border-color var(--hy-duration-hover) var(--hy-ease-control); }
+  :where(input, select, textarea) { transition: border-color var(--hy-duration-control) var(--hy-ease-control), background-color var(--hy-duration-control) var(--hy-ease-control), box-shadow var(--hy-duration-control) var(--hy-ease-control); }
+  :where(.nav-link, .development-tabs a, .settings-tabs a, .topic-tabs button, .segmented-control button, .legacy-crm .studio-tabs button) {
+    transition: background-color var(--hy-duration-nav), color var(--hy-duration-nav), border-color var(--hy-duration-nav), box-shadow var(--hy-duration-nav);
+  }
+  /* Keep the pseudo-element measurable through React's active-class change until
+     the observer transfers its current visual position to the next selection. */
+  .nav-link[data-hy-nav-moving='true']::before { content: ''; position: absolute; inset: 0; pointer-events: none; animation: hy-nav-select var(--hy-duration-nav) var(--hy-ease-out) backwards; }
+  :where([role='menu'], [role='listbox']) { transform-origin: top center; animation: hy-popup-enter var(--hy-duration-dialog-in) var(--hy-ease-out); }
+  [data-hy-overlay='dialog'][data-hy-phase='entering'] { animation: hy-dialog-enter var(--hy-duration-dialog-in) var(--hy-ease-out) both; }
+  [data-hy-overlay='dialog'][data-hy-phase='exiting'] { animation: hy-dialog-exit var(--hy-duration-dialog-out) var(--hy-ease-in) both; }
+  [data-hy-overlay='drawer'][data-hy-phase='entering'] { animation: hy-drawer-enter var(--hy-duration-drawer-in) var(--hy-ease-out) both; }
+  [data-hy-overlay='drawer'][data-hy-phase='exiting'] { animation: hy-drawer-exit var(--hy-duration-drawer-out) var(--hy-ease-in) both; }
+  .sidebar[data-hy-overlay='drawer'][data-hy-phase='entering'] { animation-name: hy-sidebar-enter; }
+  .sidebar[data-hy-overlay='drawer'][data-hy-phase='exiting'] { animation-name: hy-sidebar-exit; }
+  [data-hy-overlay='backdrop'][data-hy-phase='entering'],
+  dialog[data-hy-phase='entering']::backdrop { animation: hy-overlay-enter var(--hy-duration-dialog-in) var(--hy-ease-out) both; }
+  [data-hy-overlay='backdrop'][data-hy-phase='exiting'],
+  dialog[data-hy-phase='exiting']::backdrop { animation: hy-overlay-exit var(--hy-duration-dialog-out) var(--hy-ease-in) both; }
+  [data-hy-overlay='toast'][data-hy-phase='entering'] { animation: hy-toast-enter var(--hy-duration-toast-in) var(--hy-ease-out) both; }
+  [data-hy-overlay='toast'][data-hy-phase='exiting'] { animation: hy-toast-exit var(--hy-duration-toast-out) var(--hy-ease-in) both; }
+  .toast:not(.toast-error) .hy-toast-status-icon { animation: hy-toast-status 400ms var(--hy-ease-out); }
+}
+.hy-toast-status-icon { display: inline-flex; flex: 0 0 auto; align-items: center; justify-content: center; }
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) and (hover: hover) and (pointer: fine) {
+  .hy-card-interactive:not(:has(> .hy-card-visual)):hover::before {
+    transform: translateY(-4px);
+    background: var(--hy-surface);
+    border-color: var(--hy-selection-edge);
+    box-shadow: var(--hy-glass-highlight), var(--hy-shadow-md);
+  }
+  .hy-card-interactive:hover > .hy-card-visual { transform: translateY(-4px); box-shadow: var(--hy-glass-highlight), var(--hy-shadow-md); }
+}
+@media (prefers-reduced-motion: reduce), (forced-colors: active) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .hy-page-enter, .hy-chart-enter, .hy-item-enter, .hy-feedback-enter { opacity: 1 !important; transform: none !important; }
+  .hy-card-interactive::before, .hy-card-visual, .hy-glow-card::after { transform: none !important; translate: none !important; }
+  [data-hy-press]::before, .nav-link.active::before { transform: none !important; }
+}
+html[data-hy-motion-suspended] *, html[data-hy-motion-suspended] *::before, html[data-hy-motion-suspended] *::after { animation: none !important; transition: none !important; }
+@media (hover: none), (pointer: coarse) {
+  .hy-glow-card::after { translate: none; }
+}
+html[data-hy-transparency='reduced'] .hy-glow-card::after { display: none; }
+@media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+  .hy-glow-card::after { display: none; }
+}

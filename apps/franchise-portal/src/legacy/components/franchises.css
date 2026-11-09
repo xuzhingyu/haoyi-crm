@@ -1,0 +1,100 @@
+/* Franchise workbench: one reading surface, a continuous record drawer and a focused form. */
+.legacy-crm .franchise-workspace .franchise-list-panel {
+  padding: 24px; border: 1px solid var(--hy-border); border-radius: var(--hy-radius-panel);
+  background: var(--hy-surface); min-width: 0;
+}
+.legacy-crm .franchise-workspace .topbar { margin-bottom: 24px; }
+.legacy-crm .franchise-workspace .filter-row { margin: 0; gap: 16px; }
+.legacy-crm .franchise-workspace .filter-row > label:first-child { flex: 1 1 280px; max-width: 480px; }
+.legacy-crm .franchise-workspace .filter-row > label:not(:first-child) { flex: 0 1 160px; }
+.legacy-crm .franchise-workspace .franchise-result-count { margin-left: auto; align-self: end; padding-bottom: 12px; white-space: nowrap; }
+.legacy-crm .franchise-workspace .saved-views { margin: 24px 0 0; padding: 16px 0; border: 0; border-top: 1px solid var(--hy-border); border-bottom: 1px solid var(--hy-border); border-radius: 0; background: none; box-shadow: none; }
+.legacy-crm .franchise-workspace .saved-views .view-actions { gap: 8px; align-items: center; }
+.legacy-crm .franchise-workspace .saved-views .view-actions button[aria-pressed=true] { background: var(--hy-primary-soft); color: var(--hy-primary); border-color: var(--hy-primary); }
+.legacy-crm .franchise-workspace button,
+.legacy-crm .franchise-drawer button:not(.close),
+.legacy-crm .franchise-territory-dialog button:not(.close) { min-height: 44px; }
+.legacy-crm .franchise-workspace .filter-row :is(input, select),
+.legacy-crm .franchise-workspace .saved-views :is(select, button) { min-height: 48px; }
+.legacy-crm .franchise-workspace .franchise-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 16px; background: var(--hy-surface); }
+.legacy-crm .franchise-table :is(th, td) { padding: 16px 12px; border-bottom: 1px solid var(--hy-border); text-align: left; vertical-align: middle; overflow-wrap: anywhere; white-space: normal; font-size: 14px; line-height: 22px; }
+.legacy-crm .franchise-table thead th { color: var(--hy-muted); font-weight: 500; background: var(--hy-surface-subtle); }
+.legacy-crm .franchise-table thead th:first-child { width: 32%; }
+.legacy-crm .franchise-table thead th:nth-child(2) { width: 22%; }
+.legacy-crm .franchise-table thead th:nth-child(3) { width: 14%; }
+.legacy-crm .franchise-table thead th:nth-child(4) { width: 20%; }
+.legacy-crm .franchise-table thead th:last-child { width: 112px; }
+.legacy-crm .franchise-table tbody th { font-weight: 400; background: transparent; }
+.legacy-crm .franchise-table strong { display: block; font-size: 16px; line-height: 24px; font-weight: 600; color: var(--hy-text); }
+.legacy-crm .franchise-table small { display: block; margin-top: 4px; color: var(--hy-muted); font-size: 12px; line-height: 18px; font-weight: 400; }
+.legacy-crm .franchise-table .franchise-open { text-align: right; }
+.legacy-crm .franchise-table .franchise-open button { white-space: nowrap; }
+.legacy-crm .franchise-table tr.is-selected { background: var(--hy-primary-soft); outline: 2px solid var(--hy-primary); outline-offset: -2px; }
+.legacy-crm .franchise-table tbody tr:last-child :is(th, td) { border-bottom: 0; }
+.legacy-crm .franchise-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.legacy-crm .franchise-badge { display: inline-flex; align-items: center; padding: 4px 8px; border: 1px solid transparent; border-radius: 5px; background: var(--hy-surface-subtle); color: var(--hy-muted); font-size: 12px; line-height: 18px; font-weight: 500; white-space: nowrap; }
+.legacy-crm .franchise-badge-info { color: var(--hy-primary); background: var(--hy-primary-soft); }
+.legacy-crm .franchise-badge-success { color: var(--hy-success); background: var(--hy-success-soft); }
+.legacy-crm .franchise-badge-warning { color: var(--hy-warning); background: var(--hy-warning-soft); }
+.legacy-crm .franchise-drawer .record-navigation { margin: 0 0 24px; padding-bottom: 16px; }
+.legacy-crm .franchise-drawer .record-navigation nav { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px; }
+.legacy-crm .franchise-drawer .record-navigation span { min-width: 0; }
+.legacy-crm .franchise-summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 24px; }
+.legacy-crm .franchise-summary > div { min-width: 0; }
+.legacy-crm .franchise-summary .franchise-badge + span { margin-left: 12px; color: var(--hy-muted); overflow-wrap: anywhere; }
+.legacy-crm .franchise-summary p { margin: 8px 0 0; color: var(--hy-muted); }
+.legacy-crm .franchise-summary button { flex: 0 0 auto; }
+.legacy-crm .franchise-section { padding: 24px 0; border-top: 1px solid var(--hy-border); }
+.legacy-crm .franchise-section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 12px; }
+.legacy-crm .franchise-section h3 { margin: 0; font-size: 18px; line-height: 26px; font-weight: 600; color: var(--hy-text); }
+.legacy-crm .franchise-rows { list-style: none; margin: 0; padding: 0; }
+.legacy-crm .franchise-rows li { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-height: 56px; padding: 12px 0; border-bottom: 1px solid var(--hy-border); }
+.legacy-crm .franchise-rows li:last-child { border-bottom: 0; padding-bottom: 0; }
+.legacy-crm .franchise-rows li > :first-child { flex: 1 1 160px; min-width: 0; overflow-wrap: anywhere; }
+.legacy-crm .franchise-rows li > button { flex: 0 0 auto; min-width: 94px; }
+.legacy-crm .franchise-row-title strong { font-weight: 500; }
+.legacy-crm .franchise-row-title small { display: block; margin-top: 4px; color: var(--hy-muted); font-size: 12px; line-height: 18px; }
+.legacy-crm .franchise-empty { color: var(--hy-muted); margin: 12px 0 0; }
+.legacy-crm .franchise-drawer > footer { display: flex; justify-content: flex-end; align-items: center; gap: 16px; }
+.legacy-crm .action-drawer.franchise-drawer > footer button[type=button].danger.franchise-close-account { margin-right: auto; background: var(--hy-surface); color: var(--hy-danger-text); border-color: var(--hy-border); box-shadow: none; }
+.legacy-crm .action-drawer.franchise-drawer > footer button[type=button].danger.franchise-close-account:hover:not(:disabled) { background: var(--hy-danger-soft); border-color: var(--hy-danger); }
+.legacy-crm .franchise-form-subject { margin: 0 0 24px; color: var(--hy-muted); }
+.legacy-crm .franchise-territory-form fieldset { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; min-width: 0; margin: 0; padding: 0; border: 0; }
+.legacy-crm .franchise-territory-form label { display: block; color: var(--hy-body); font-size: 14px; font-weight: 500; line-height: 22px; }
+.legacy-crm .franchise-territory-form input:not([type=checkbox]) { display: block; width: 100%; min-height: 48px; margin-top: 8px; font-size: 16px; }
+.legacy-crm .franchise-territory-form .franchise-checkbox { grid-column: 1 / -1; display: flex; flex-direction: row; align-items: center; gap: 12px; min-height: 44px; width: fit-content; cursor: pointer; }
+.legacy-crm .franchise-checkbox input[type=checkbox] { appearance: auto; flex: 0 0 20px; width: 20px; height: 20px; min-height: 0; margin: 0; accent-color: var(--hy-primary); }
+.legacy-crm .franchise-territory-dialog > footer { display: flex; gap: 8px; justify-content: flex-end; }
+.legacy-crm .franchise-territory-dialog > footer button { min-width: 104px; min-height: 48px; }
+.legacy-crm .franchise-territory-form .draft-notice { margin-bottom: 24px; }
+.legacy-crm .franchise-territory-form .draft-status { margin: 0 0 16px; color: var(--hy-muted); }
+
+@media (max-width: 1100px) {
+  .legacy-crm .franchise-table thead { display: none; }
+  .legacy-crm .franchise-table :is(tbody, tr, th, td) { display: block; width: auto; }
+  .legacy-crm .franchise-table tbody tr { padding: 16px 0; border-bottom: 1px solid var(--hy-border); }
+  .legacy-crm .franchise-table tbody tr :is(th, td) { padding: 8px 12px; border: 0; }
+  .legacy-crm .franchise-table td[data-label] { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .legacy-crm .franchise-table td[data-label]::before { content: attr(data-label); flex: 0 0 80px; color: var(--hy-muted); }
+  .legacy-crm .franchise-table td[data-label] small { margin: 0; }
+}
+@media (max-width: 767px) {
+  .legacy-crm .franchise-workspace .franchise-list-panel { padding: 16px; }
+  .legacy-crm .franchise-workspace .filter-row > label,
+  .legacy-crm .franchise-workspace .filter-row > label:first-child,
+  .legacy-crm .franchise-workspace .filter-row > label:not(:first-child) { flex: 1 1 100%; max-width: none; }
+  .legacy-crm .franchise-workspace .franchise-result-count { margin-left: 0; padding: 0; }
+  .legacy-crm .franchise-table :is(th, td) { font-size: 16px; line-height: 24px; }
+  .legacy-crm .franchise-drawer .franchise-summary { flex-wrap: wrap; padding-bottom: 16px; }
+  .legacy-crm .franchise-drawer .record-navigation { margin-bottom: 16px; }
+  .legacy-crm .franchise-drawer .franchise-section { padding: 16px 0; }
+  .legacy-crm .franchise-territory-form fieldset { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .legacy-crm .franchise-territory-form label { font-size: 16px; line-height: 24px; }
+  .legacy-crm .franchise-rows li > :first-child { flex-basis: 140px; }
+}
+@media (forced-colors: active) {
+  .legacy-crm .franchise-badge { background: Canvas; color: CanvasText; border-color: CanvasText; }
+  .legacy-crm .franchise-table tr.is-selected { outline-color: Highlight; }
+  .legacy-crm .franchise-workspace .saved-views .view-actions button[aria-pressed=true] { background: Highlight; color: HighlightText; border-color: Highlight; }
+  .legacy-crm .action-drawer.franchise-drawer > footer button[type=button].danger.franchise-close-account { background: ButtonFace; color: ButtonText; border-color: ButtonText; }
+}
